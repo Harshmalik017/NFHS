@@ -1,7 +1,8 @@
-import { BarChart3, History, Map, MapPinned } from "lucide-react";
+import { BarChart3, History, Map as MapIcon, MapPinned } from "lucide-react";
 
 import { DistrictMap } from "@/components/district-map";
 import { HomeImageCarousel } from "@/components/home-image-carousel";
+import { HomeStateNfhsTable } from "@/components/home-state-nfhs-table";
 import { PageShell } from "@/components/page-shell";
 import { StatCard } from "@/components/stat-card";
 import {
@@ -22,6 +23,21 @@ export default function HomePage() {
       value: indicator.nfhs6.value,
       status: toObservationStatus(indicator.nfhs6.status),
     })),
+  }));
+  const stateIndicatorLabels = new Map(
+    nfhsData.stateIndicatorCatalog.map((indicator) => [
+      indicator.id,
+      indicator.label,
+    ]),
+  );
+  const stateRows = nfhsData.state.indicators.map((indicator) => ({
+    id: indicator.id,
+    label:
+      stateIndicatorLabels.get(indicator.id) ?? `Indicator ${indicator.id}`,
+    nfhs6: indicator.nfhs6.total.value,
+    nfhs5: indicator.nfhs5.total.value,
+    nfhs6Status: toObservationStatus(indicator.nfhs6.total.status),
+    nfhs5Status: toObservationStatus(indicator.nfhs5.total.status),
   }));
 
   return (
@@ -61,7 +77,7 @@ export default function HomePage() {
           <div>
             <p className="eyebrow">District map</p>
             <h2 id="district-map" className="section-heading mt-2 flex items-center gap-2">
-              <Map className="size-5 text-primary" aria-hidden="true" />
+              <MapIcon className="size-5 text-primary" aria-hidden="true" />
               See how one indicator varies across Uttar Pradesh
             </h2>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
@@ -70,6 +86,8 @@ export default function HomePage() {
           </div>
           <DistrictMap indicators={mapIndicators} districts={mapDistricts} />
         </section>
+
+        <HomeStateNfhsTable rows={stateRows} />
 
       </div>
     </PageShell>

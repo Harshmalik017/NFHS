@@ -1,15 +1,16 @@
 "use client";
 
-import { Download, FileBarChart2, FileText } from "lucide-react";
+import { ArrowDown, FileBarChart2, FileText } from "lucide-react";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { districts } from "@/lib/nfhs/data";
 import { buildSampleSizeCsv } from "@/lib/nfhs/sample-size-csv";
 import { cn } from "@/lib/utils";
@@ -95,46 +96,60 @@ export function ReportsDownloads() {
   }
 
   return (
-    <div className="grid gap-4">
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <FileBarChart2 className="size-5 text-primary" aria-hidden="true" />
-            Sample size report (CSV)
-          </CardTitle>
-          <CardDescription>
-            Download district-level sample sizes for households, women, and men.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Button type="button" onClick={downloadSampleSizeCsv}>
-            <Download className="size-4" aria-hidden="true" />
-            Download sample size CSV
-          </Button>
-        </CardContent>
-      </Card>
+    <div className="overflow-hidden rounded-xl border bg-card">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="min-w-72">Report</TableHead>
+            <TableHead className="hidden sm:table-cell">File</TableHead>
+            <TableHead className="w-28 text-right">Action</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell>
+              <div className="flex items-center gap-2 font-medium">
+                <FileBarChart2 className="size-4 text-primary" aria-hidden="true" />
+                Sample size report (CSV)
+              </div>
+            </TableCell>
+            <TableCell className="hidden sm:table-cell text-muted-foreground">
+              up-district-sample-sizes.csv
+            </TableCell>
+            <TableCell className="text-right">
+              <Button type="button" onClick={downloadSampleSizeCsv} size="sm">
+                <span className="hidden sm:inline">Download</span>
+                <ArrowDown className="size-4 sm:hidden" aria-hidden="true" />
+              </Button>
+            </TableCell>
+          </TableRow>
 
-      {reports.map((report) => (
-        <Card key={report.fileName}>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <report.Icon className="size-5 text-primary" aria-hidden="true" />
-              {report.label}
-            </CardTitle>
-            <CardDescription>{report.fileName}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <a
-              href={report.href}
-              download={report.fileName}
-              className={cn(buttonVariants())}
-            >
-              <Download className="size-4" aria-hidden="true" />
-              Download PDF
-            </a>
-          </CardContent>
-        </Card>
-      ))}
+          {reports.map((report) => (
+            <TableRow key={report.fileName}>
+              <TableCell>
+                <div className="flex items-center gap-2 font-medium">
+                  <report.Icon className="size-4 text-primary" aria-hidden="true" />
+                  {report.label}
+                </div>
+              </TableCell>
+              <TableCell className="hidden sm:table-cell text-muted-foreground">
+                {report.fileName}
+              </TableCell>
+              <TableCell className="text-right">
+                <a
+                  href={report.href}
+                  download={report.fileName}
+                  className={cn(buttonVariants({ size: "sm" }))}
+                  aria-label={`Download ${report.label}`}
+                >
+                  <span className="hidden sm:inline">Download</span>
+                  <ArrowDown className="size-4 sm:hidden" aria-hidden="true" />
+                </a>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   );
 }

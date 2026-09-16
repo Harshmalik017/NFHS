@@ -10,6 +10,10 @@ policy.
 
 ### Added
 
+- Added a reports-page table layout with responsive action controls (text
+  download button on tablet/desktop and downward-arrow action on mobile).
+- Added a home-page Uttar Pradesh state NFHS-6 vs NFHS-5 table below the map,
+  with an Excel download endpoint.
 - Added a responsive homepage hero image carousel that displays 4 cards on
   desktop, 3 on tablet, and 1 on mobile with continuous mobile autoplay.
 - Added NFHS data quality assurance PDF to the reports page download list.
