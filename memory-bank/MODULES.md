@@ -234,6 +234,43 @@ shows that a single observations file sends unnecessary data to clients.
 - provide geometry license and attribution;
 - repeat the analytical-demonstration disclaimer.
 
+### 3.8 Reports and downloads
+
+**Route:** `/reports`
+
+**Responsibilities:**
+
+- provide a responsive table of downloadable NFHS and budget source documents;
+- show text download actions on tablet/desktop and a compact arrow action on
+  mobile;
+- include district sample-size CSV export;
+- keep file names and public asset links aligned.
+
+### 3.9 Budget Speech and NFHS context
+
+**Route:** `/budget-speech`
+
+**Responsibilities:**
+
+- summarize the Uttar Pradesh Budget Speech 2026-27 macro-fiscal position,
+  receipts/expenditure, sector allocations, and revenue targets;
+- cover the major speech categories, including Kisan, Mahila, Yuva, education,
+  health, industry, infrastructure, water/energy, rural/urban development,
+  welfare, environment, tourism, law/justice, and transport;
+- map verified values to the matching page in the 32-page public PDF;
+- use an eye action labelled `Budget Speech 2026-27` to preview the internally
+  mapped source page in a dialog with an explicit red close action;
+- distinguish speech-verified facts from the analytical NFHS life-cycle,
+  vulnerability, and scheme-linkage framework.
+
+**Main components:**
+
+- `BudgetSpeechPage`
+- `BudgetSpeechPagePreview`
+- `Card`
+- `Table`
+- `Dialog`
+
 ## 4. Data modules
 
 ### 4.1 District catalog

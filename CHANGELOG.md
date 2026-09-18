@@ -21,6 +21,12 @@ policy.
 - Added a new Budget Speech × NFHS-6 page and linked it in the main navigation.
 - Updated the Budget Speech page to use colorful, insight-driven cards from the
   speech instead of a reference image.
+- Expanded the Budget Speech page with all major speech categories, including
+  Kisan, Mahila, Yuva, education, health, industry, infrastructure, rural and
+  urban development, social welfare, environment, tourism, and revenue.
+- Verified Budget Speech source links against the 32-page PDF, replaced visible
+  page-number labels with consistent source-preview actions, and distinguished
+  speech-verified facts from analytical NFHS life-cycle mappings.
 - Added four NFHS-4/NFHS-5 Uttar Pradesh PDF reports to the reports page
   download list.
 - Added NFHS-1 India and NFHS-2/NFHS-3 Uttar Pradesh PDF reports to the

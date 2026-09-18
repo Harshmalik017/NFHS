@@ -34,6 +34,16 @@ application evolves.
 - **District indicators:** All 93 indicators reported in each district fact
   sheet, with NFHS-6 and NFHS-5 values
 - **Comparison limit:** Up to four districts
+- **Home data export:** State-level NFHS-6 versus NFHS-5 table with Excel
+  download below the district map
+- **Reports:** Responsive download table for NFHS reports, fact sheets, the
+  data-quality document, and the Uttar Pradesh Budget Speech 2026-27
+- **Budget Speech:** `/budget-speech` presents verified fiscal figures,
+  beneficiary/sector categories, and clearly labelled analytical NFHS
+  life-cycle mappings
+- **Budget source previews:** Eye actions labelled `Budget Speech 2026-27` open
+  the exact internally mapped PDF page in a dialog; page numbers are not shown
+  in the trigger text
 - **Deployment:** GitHub public repository and Vercel
 - **Repository:** <https://github.com/Harshmalik017/NFHS>
 
@@ -68,6 +78,11 @@ provide urban/rural estimates. The application must retain both limitations.
    application and public documentation.
 6. Keep this index current whenever a module, route, dataset, or governing
    document is added or renamed.
+7. Budget Speech figures must be mapped to the matching page in the checked-in
+   32-page PDF. Do not use generic page 1/page 2 references.
+8. Treat life-cycle stages, vulnerability groupings, and NFHS-to-scheme
+   linkages as an analytical planning framework, not verbatim Budget Speech
+   claims.
 
 ## Disclaimer
 
