@@ -17,6 +17,8 @@ policy.
 - Added a responsive homepage hero image carousel that displays 4 cards on
   desktop, 3 on tablet, and 1 on mobile with continuous mobile autoplay.
 - Added NFHS data quality assurance PDF to the reports page download list.
+- Added Budget Speech 2026-2027 PDF to the reports page download list.
+- Added a new Budget Speech × NFHS-6 page and linked it in the main navigation.
 - Added four NFHS-4/NFHS-5 Uttar Pradesh PDF reports to the reports page
   download list.
 - Added NFHS-1 India and NFHS-2/NFHS-3 Uttar Pradesh PDF reports to the

@@ -35,6 +35,12 @@ const reports = [
     Icon: FileText,
   },
   {
+    label: "Budget speech 2026-2027 (PDF)",
+    fileName: "Budget_Speech_2026_2027.pdf",
+    href: "/Budget_Speech_2026_2027.pdf",
+    Icon: FileText,
+  },
+  {
     label: "NFHS-4 Uttar Pradesh state factsheet (PDF)",
     fileName: "NFHS-4_StateFactSheet_Uttar Pradesh.pdf",
     href: "/NFHS-4_StateFactSheet_Uttar%20Pradesh.pdf",

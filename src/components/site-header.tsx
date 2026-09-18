@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
 const navigation = [
   { href: "/", label: "Home" },
   { href: "/compare", label: "All Districts" },
+  { href: "/budget-speech", label: "Budget Speech" },
   { href: "/reports", label: "Reports" },
 ];
 
