@@ -1,5 +1,16 @@
 import type { Metadata } from "next";
-import { Download, Landmark, LineChart, ReceiptText, Target } from "lucide-react";
+import {
+  Baby,
+  Download,
+  HeartPulse,
+  Landmark,
+  LineChart,
+  ReceiptText,
+  School,
+  ShieldCheck,
+  Target,
+  UserRoundCheck,
+} from "lucide-react";
 
 import { PageShell } from "@/components/page-shell";
 import { Badge } from "@/components/ui/badge";
@@ -132,6 +143,49 @@ const revenueTargets = [
   { source: "Excise duty", target: "₹71,278 crore" },
   { source: "Stamps & Registration", target: "₹43,802 crore" },
   { source: "Vehicle tax", target: "₹15,808 crore" },
+];
+
+const categorisationCards = [
+  {
+    title: "Early childhood (0-5 years)",
+    indicators:
+      "Birth outcomes, immunization, stunting/wasting/underweight, child disease prevention",
+    schemes: "Health & Family Welfare, Women & Child Development",
+    Icon: Baby,
+    className: "from-amber-500/10 to-orange-500/10",
+  },
+  {
+    title: "School-age children (6-14 years)",
+    indicators:
+      "School continuity, sanitation and drinking water access, household resilience",
+    schemes: "Basic Education, Secondary Education, Namami Gange & Rural Water",
+    Icon: School,
+    className: "from-cyan-500/10 to-blue-500/10",
+  },
+  {
+    title: "Adolescents and youth (10-19 years)",
+    indicators:
+      "Education retention, skills, agency and social transition indicators",
+    schemes: "Vocational Education & Skill Development, Social Welfare",
+    Icon: UserRoundCheck,
+    className: "from-violet-500/10 to-fuchsia-500/10",
+  },
+  {
+    title: "Women of reproductive age (15-49 years)",
+    indicators:
+      "ANC coverage, institutional delivery, family planning and women empowerment indicators",
+    schemes: "Medical Health & Family Welfare, Women & Child Development",
+    Icon: ShieldCheck,
+    className: "from-emerald-500/10 to-teal-500/10",
+  },
+  {
+    title: "Adults and elderly (50+ years)",
+    indicators:
+      "NCD profile including blood pressure, diabetes and long-term health vulnerability",
+    schemes: "Health systems, Social Welfare and service delivery allocations",
+    Icon: HeartPulse,
+    className: "from-rose-500/10 to-pink-500/10",
+  },
 ];
 
 export default function BudgetSpeechPage() {
@@ -272,6 +326,40 @@ export default function BudgetSpeechPage() {
                   <CardDescription>{item.source}</CardDescription>
                   <CardTitle className="text-xl">{item.target}</CardTitle>
                 </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <section aria-labelledby="budget-categorisation" className="space-y-4">
+          <div>
+            <p className="eyebrow">Categorisation cards</p>
+            <h2 id="budget-categorisation" className="section-heading mt-2">
+              Life-cycle categorisation for NFHS-linked planning
+            </h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {categorisationCards.map((card) => (
+              <Card
+                key={card.title}
+                className={cn("border-primary/20 bg-gradient-to-br", card.className)}
+              >
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-start justify-between gap-3 text-base">
+                    <span>{card.title}</span>
+                    <card.Icon className="size-4 text-primary" aria-hidden="true" />
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  <p className="text-sm text-muted-foreground">
+                    <span className="font-medium text-foreground">Indicators: </span>
+                    {card.indicators}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    <span className="font-medium text-foreground">Budget linkage: </span>
+                    {card.schemes}
+                  </p>
+                </CardContent>
               </Card>
             ))}
           </div>
