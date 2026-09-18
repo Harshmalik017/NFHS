@@ -21,7 +21,6 @@ const navigation = [
   { href: "/compare", label: "All Districts" },
   { href: "/budget-speech", label: "Budget Speech" },
   { href: "/reports", label: "Reports" },
-  { href: "/budget-speech", label: "Budget Speech" },
 ];
 
 function NavigationLinks({ mobile = false }: { mobile?: boolean }) {
