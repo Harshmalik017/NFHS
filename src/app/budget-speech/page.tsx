@@ -148,41 +148,96 @@ const revenueTargets = [
 const categorisationCards = [
   {
     title: "Early childhood (0-5 years)",
-    indicators:
-      "Birth outcomes, immunization, stunting/wasting/underweight, child disease prevention",
-    schemes: "Health & Family Welfare, Women & Child Development",
+    indicatorPoints: [
+      "Birth registration",
+      "Institutional birth",
+      "Full immunization",
+      "Stunting, wasting and underweight",
+      "Pre-school attendance (2-5 years)",
+    ],
+    lifeCycleFocus: "Survival, nutrition, identity, early stimulation, and care burden",
+    vulnerabilityPoints: [
+      "Malnutrition",
+      "Infections",
+      "Lack of early learning",
+      "Caregiver burden",
+    ],
+    selectedSchemes: ["JSY/JSSK/NHM", "ICDS/POSHAN", "CM Kanya Sumangala"],
+    budgetLines: ["Health & Family Welfare: ₹37,956 crore", "Women & Child Development: ₹18,620 crore", "Kanya Sumangala: ₹400 crore"],
     Icon: Baby,
     className: "from-amber-500/10 to-orange-500/10",
   },
   {
     title: "School-age children (6-14 years)",
-    indicators:
-      "School continuity, sanitation and drinking water access, household resilience",
-    schemes: "Basic Education, Secondary Education, Namami Gange & Rural Water",
+    indicatorPoints: [
+      "School attendance",
+      "Female population 6+ ever attended school",
+      "Sanitation and drinking water access",
+      "Household health insurance",
+    ],
+    lifeCycleFocus:
+      "Learning continuity, nutrition, safe WASH, and protection from poverty shocks",
+    vulnerabilityPoints: ["School dropout", "Poor nutrition", "Unsafe WASH", "Health risks"],
+    selectedSchemes: [
+      "Samagra Shiksha",
+      "PM POSHAN",
+      "Swachh Bharat Mission-Gramin",
+      "Jal Jeevan Mission",
+    ],
+    budgetLines: ["Basic Education: ₹77,622 crore", "Secondary Education: ₹22,167 crore", "Namami Gange & Rural Water: ₹22,676 crore"],
     Icon: School,
     className: "from-cyan-500/10 to-blue-500/10",
   },
   {
     title: "Adolescents and youth (10-19 years)",
-    indicators:
-      "Education retention, skills, agency and social transition indicators",
-    schemes: "Vocational Education & Skill Development, Social Welfare",
+    indicatorPoints: [
+      "Women 15-19 already mothers/pregnant",
+      "Women 15-49 with schooling",
+      "Internet/mobile access",
+      "Menstrual hygiene availability",
+    ],
+    lifeCycleFocus:
+      "Delay early marriage/pregnancy, continue education, and improve digital access",
+    vulnerabilityPoints: [
+      "Early pregnancy/marriage",
+      "School dropout",
+      "Poor reproductive health",
+      "Digital exclusion",
+    ],
+    selectedSchemes: ["Kanya Sumangala", "Scholarships", "Mission Shakti", "Skill and employment missions"],
+    budgetLines: ["Kanya Sumangala: ₹400 crore", "Scholarships: ₹3,060.5 crore", "Social welfare schemes: ₹14,953 crore", "Employment missions: ₹200 crore"],
     Icon: UserRoundCheck,
     className: "from-violet-500/10 to-fuchsia-500/10",
   },
   {
     title: "Women of reproductive age (15-49 years)",
-    indicators:
-      "ANC coverage, institutional delivery, family planning and women empowerment indicators",
-    schemes: "Medical Health & Family Welfare, Women & Child Development",
+    indicatorPoints: [
+      "ANC and institutional delivery",
+      "Family planning/TFR",
+      "Women own bank/mobile",
+      "Decision-making and violence indicators",
+      "Health insurance coverage",
+    ],
+    lifeCycleFocus: "Maternal health, family planning agency, income security, and reduced violence",
+    vulnerabilityPoints: ["Maternal risk", "Unpaid care work", "Low agency/decision-making", "Income insecurity"],
+    selectedSchemes: ["PMMVY", "JSY/JSSK/NHM", "Ayushman Bharat/health insurance", "NRLM/BC Sakhi"],
+    budgetLines: ["Health & Family Welfare: ₹37,956 crore", "Women & Child Development: ₹18,620 crore", "Working women hostels: ₹100 crore"],
     Icon: ShieldCheck,
     className: "from-emerald-500/10 to-teal-500/10",
   },
   {
     title: "Adults and elderly (50+ years)",
-    indicators:
-      "NCD profile including blood pressure, diabetes and long-term health vulnerability",
-    schemes: "Health systems, Social Welfare and service delivery allocations",
+    indicatorPoints: [
+      "Hypertension",
+      "Diabetes/high blood sugar",
+      "Obesity",
+      "Tobacco/alcohol use",
+      "Health insurance coverage",
+    ],
+    lifeCycleFocus: "Managing NCDs, disability and old-age security to reduce poverty and isolation",
+    vulnerabilityPoints: ["NCD burden", "Disability", "Old-age poverty", "Widowhood/vulnerability"],
+    selectedSchemes: ["Old-age/farmer pension", "Nirashrit Mahila Pension", "Divyang Pension", "NCD screening/health centres"],
+    budgetLines: ["Old age/farmer pension: ₹8,950 crore", "Nirashrit Mahila Pension: ₹3,500 crore", "Divyang pension: ₹1,470 crore"],
     Icon: HeartPulse,
     className: "from-rose-500/10 to-pink-500/10",
   },
@@ -337,6 +392,9 @@ export default function BudgetSpeechPage() {
             <h2 id="budget-categorisation" className="section-heading mt-2">
               Life-cycle categorisation for NFHS-linked planning
             </h2>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              From data to action: linking district indicators with schemes and budget heads.
+            </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {categorisationCards.map((card) => (
@@ -351,14 +409,52 @@ export default function BudgetSpeechPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <p className="text-sm text-muted-foreground">
-                    <span className="font-medium text-foreground">Indicators: </span>
-                    {card.indicators}
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    <span className="font-medium text-foreground">Budget linkage: </span>
-                    {card.schemes}
-                  </p>
+                  <div className="space-y-1">
+                    <p className="text-xs font-semibold tracking-wide text-primary uppercase">
+                      NFHS indicator focus
+                    </p>
+                    <ul className="list-inside list-disc text-sm text-muted-foreground">
+                      {card.indicatorPoints.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-xs font-semibold tracking-wide text-primary uppercase">
+                      Life-cycle stage focus
+                    </p>
+                    <p className="text-sm text-muted-foreground">{card.lifeCycleFocus}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-xs font-semibold tracking-wide text-primary uppercase">
+                      Key vulnerabilities
+                    </p>
+                    <ul className="list-inside list-disc text-sm text-muted-foreground">
+                      {card.vulnerabilityPoints.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-xs font-semibold tracking-wide text-primary uppercase">
+                      Selected schemes
+                    </p>
+                    <ul className="list-inside list-disc text-sm text-muted-foreground">
+                      {card.selectedSchemes.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-xs font-semibold tracking-wide text-primary uppercase">
+                      Budget linkage (2026-27)
+                    </p>
+                    <ul className="list-inside list-disc text-sm text-muted-foreground">
+                      {card.budgetLines.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </CardContent>
               </Card>
             ))}
