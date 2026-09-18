@@ -49,7 +49,7 @@ const overallBudgetSize = [
   {
     title: "Fiscal deficit",
     value: "₹1,18,480.59 crore",
-    note: "2.98% of estimated GSDP, within 3% limit",
+    note: "2.98% of estimated GSDP, within the 3% limit set by the 16th Finance Commission",
     gradient: "from-amber-500/20 to-orange-500/20",
   },
   {
@@ -139,7 +139,7 @@ export default function BudgetSpeechPage() {
     <PageShell
       eyebrow="Uttar Pradesh Budget Speech 2026-27"
       title="Budget highlights with NFHS-6 policy context"
-      description="A structured summary of budget size, receipts, economic signals, sector allocations, and revenue targets for policy planning."
+      description="A complete structured summary of all requested budget blocks: overall budget size, receipts and expenditure, economic highlights, sector-wise allocations, and revenue targets."
       actions={
         <a
           href="/Budget_Speech_2026_2027.pdf"
