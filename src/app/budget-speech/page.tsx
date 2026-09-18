@@ -243,208 +243,222 @@ const budgetSpeechFocusAreas: BudgetSpeechFocus[] = [
   },
   {
     title: "School and nutrition",
-    value: "₹7,738 crore",
+    value: "₹77,622 crore",
     description:
-      "Samagra Shiksha with nutrition and sanitation convergence to reduce child vulnerability.",
+      "Basic education outlay with scholarship and school quality priorities.",
     className:
-      "border-cyan-300/60 bg-gradient-to-br from-cyan-100 to-sky-100 dark:from-cyan-950/30 dark:to-sky-950/30",
+      "border-sky-300/60 bg-gradient-to-br from-sky-100 to-cyan-100 dark:from-sky-950/30 dark:to-cyan-950/30",
     Icon: School,
   },
   {
-    title: "Women and child welfare",
+    title: "Women and child development",
     value: "₹18,620 crore",
     description:
-      "Women and Child Development head aligned with life-cycle social protection goals.",
+      "Direct focus on women, adolescent girls, and child-centered social support.",
     className:
-      "border-pink-300/60 bg-gradient-to-br from-pink-100 to-fuchsia-100 dark:from-pink-950/30 dark:to-fuchsia-950/30",
-    Icon: Users,
-  },
-  {
-    title: "Green and energy transition",
-    value: "2,815 MW",
-    description:
-      "Installed solar capacity highlighted with broader clean-energy direction in budget speech.",
-    className:
-      "border-amber-300/60 bg-gradient-to-br from-amber-100 to-yellow-100 dark:from-amber-950/30 dark:to-yellow-950/30",
-    Icon: Leaf,
-  },
-  {
-    title: "Inclusion and social protection",
-    value: "₹14,953 crore",
-    description:
-      "Social welfare envelope supporting vulnerable households, elderly, and at-risk groups.",
-    className:
-      "border-violet-300/60 bg-gradient-to-br from-violet-100 to-purple-100 dark:from-violet-950/30 dark:to-purple-950/30",
-    Icon: AlertTriangle,
+      "border-fuchsia-300/60 bg-gradient-to-br from-fuchsia-100 to-pink-100 dark:from-fuchsia-950/30 dark:to-pink-950/30",
+    Icon: UserRoundCheck,
   },
 ];
 
-const mappedBudgetHeads: BudgetHead[] = [
+const budgetHeads: BudgetHead[] = [
   {
-    head: "Health & Family Welfare",
+    head: "Basic Education",
+    amount: "₹77,622 crore",
+    category: "Human development",
+  },
+  {
+    head: "Medical, Health & Family Welfare",
     amount: "₹37,956 crore",
-    category: "Health systems, RMNCH+A, public health delivery",
+    category: "Health systems",
   },
   {
     head: "Women & Child Development",
     amount: "₹18,620 crore",
-    category: "Nutrition, child development, women support services",
+    category: "Social protection",
   },
   {
-    head: "Samagra Shiksha",
-    amount: "₹7,738 crore",
-    category: "School continuity and education infrastructure",
+    head: "Irrigation & Flood Control",
+    amount: "₹18,290 crore",
+    category: "Resilience",
   },
   {
-    head: "SBM-Gramin",
-    amount: "₹2,823 crore",
-    category: "Sanitation and WASH-linked vulnerability reduction",
+    head: "Rural Development",
+    amount: "₹25,500 crore",
+    category: "Livelihoods",
   },
   {
-    head: "Scholarships",
-    amount: "₹3,060.5 crore",
-    category: "Schooling retention and equity support",
+    head: "Namami Gange & Rural Water Supply",
+    amount: "₹22,676 crore",
+    category: "WASH",
   },
   {
-    head: "Social welfare schemes",
-    amount: "₹14,953 crore",
-    category: "Protection for vulnerable households and life-cycle needs",
+    head: "Panchayati Raj",
+    amount: "₹32,090 crore",
+    category: "Local governance",
+  },
+  {
+    head: "Agriculture",
+    amount: "₹10,888 crore",
+    category: "Food systems",
   },
 ];
 
 export const metadata: Metadata = {
   title: "Budget Speech × NFHS-6",
   description:
-    "Explore how Uttar Pradesh Budget Speech 2026-2027 priorities can be mapped to NFHS-6 district vulnerabilities across life stages.",
+    "Uttar Pradesh Budget 2026-27 priorities mapped to NFHS-6 indicators.",
 };
 
 export default function BudgetSpeechPage() {
   return (
     <PageShell
-      eyebrow="Policy intelligence"
-      title="UP Budget Speech 2026-2027 × NFHS-6"
-      description="A planning view that links life-cycle vulnerabilities from NFHS-6 district fact sheets to budget heads and social protection schemes in Uttar Pradesh."
+      eyebrow="Uttar Pradesh Budget 2026-27"
+      title="Budget Speech priorities aligned with NFHS-6 outcomes"
+      description="A colorful policy-to-outcome view that links major budget signals to life-cycle vulnerabilities and NFHS-6 indicator tracking."
       actions={
-        <div className="flex flex-wrap items-center justify-end gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <a
             href="/Budget_Speech_2026_2027.pdf"
             className={cn(buttonVariants({ variant: "outline" }))}
             download
           >
             <Download className="size-4" aria-hidden="true" />
-            Download Budget Speech
+            Download speech PDF
           </a>
           <Link href="/reports" className={cn(buttonVariants())}>
-            Explore reports
-            <ArrowRight className="size-4" aria-hidden="true" />
+            <FileText className="size-4" aria-hidden="true" />
+            Open reports
           </Link>
+        </div>
+      }
+      headerExtra={
+        <div className="flex flex-wrap gap-2">
+          <Badge variant="secondary">NFHS-6</Badge>
+          <Badge variant="secondary">Budget 2026-27</Badge>
+          <Badge variant="secondary">UP state priorities</Badge>
         </div>
       }
     >
       <div className="space-y-10">
-        <section aria-label="Page context" className="flex flex-wrap gap-2">
-          <Badge variant="secondary">Uttar Pradesh</Badge>
-          <Badge variant="secondary">Budget 2026-2027</Badge>
-          <Badge variant="secondary">NFHS-6 district fact sheets</Badge>
-          <Badge variant="secondary">Life-cycle social protection</Badge>
-        </section>
-
-        <section
-          aria-label="Macroeconomic and planning highlights"
-          className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
-        >
-          {insightMetrics.map((metric) => (
-            <Card key={metric.label} className="border-primary/20 bg-primary/5">
-              <CardHeader className="gap-2">
-                <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                  <metric.Icon className="size-4 text-primary" aria-hidden="true" />
-                  {metric.label}
-                </CardTitle>
-                <p className="text-2xl font-semibold tracking-tight">{metric.value}</p>
-              </CardHeader>
-              <CardContent className="pt-0 text-sm text-muted-foreground">
-                {metric.description}
-              </CardContent>
-            </Card>
-          ))}
-        </section>
-
-        <section aria-labelledby="budget-focus-cards" className="space-y-4">
-          <div className="space-y-2">
-            <p className="eyebrow">Budget speech focus areas</p>
-            <h2 id="budget-focus-cards" className="section-heading">
-              Core insights from Budget Speech 2026-2027
+        <section aria-labelledby="macro-insights" className="space-y-4">
+          <div>
+            <p className="eyebrow">Macro context</p>
+            <h2 id="macro-insights" className="section-heading mt-2">
+              Key signals from the budget speech
             </h2>
-            <p className="max-w-4xl text-sm leading-6 text-muted-foreground">
-              These themes are extracted from the speech and aligned to NFHS-6
-              planning relevance.
-            </p>
           </div>
-
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {budgetSpeechFocusAreas.map((focus) => (
-              <Card key={focus.title} className={focus.className}>
-                <CardHeader className="gap-2">
-                  <CardTitle className="flex items-center gap-2 text-sm font-medium text-foreground/80">
-                    <focus.Icon className="size-4" aria-hidden="true" />
-                    {focus.title}
+            {insightMetrics.map((metric) => (
+              <Card
+                key={metric.label}
+                className="border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-background"
+              >
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-start justify-between gap-3 text-base">
+                    <span>{metric.label}</span>
+                    <metric.Icon className="size-4 text-primary" aria-hidden="true" />
                   </CardTitle>
-                  <p className="text-2xl font-semibold tracking-tight">{focus.value}</p>
                 </CardHeader>
-                <CardContent className="pt-0 text-sm text-foreground/80">
-                  {focus.description}
+                <CardContent className="space-y-2">
+                  <p className="text-2xl font-semibold tracking-tight">{metric.value}</p>
+                  <p className="text-sm leading-6 text-muted-foreground">
+                    {metric.description}
+                  </p>
                 </CardContent>
               </Card>
             ))}
           </div>
         </section>
 
-        <section aria-labelledby="life-cycle-cards" className="space-y-4">
-          <div className="space-y-2">
-            <p className="eyebrow">Life-cycle design</p>
-            <h2 id="life-cycle-cards" className="section-heading">
-              NFHS-6 life-stage vulnerability and budget action cards
+        <section aria-labelledby="focus-cards" className="space-y-4">
+          <div>
+            <p className="eyebrow">Budget pulse</p>
+            <h2 id="focus-cards" className="section-heading mt-2">
+              Priority areas that shape NFHS-linked outcomes
             </h2>
-            <p className="max-w-4xl text-sm leading-6 text-muted-foreground">
-              Colorful cards replace the reference image and present implementable
-              program pathways directly from the speech-aligned planning model.
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {budgetSpeechFocusAreas.map((item) => (
+              <Card key={item.title} className={item.className}>
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center justify-between gap-3 text-base">
+                    <span>{item.title}</span>
+                    <item.Icon className="size-5 text-primary" aria-hidden="true" />
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  <p className="text-2xl font-semibold tracking-tight">{item.value}</p>
+                  <p className="text-sm leading-6 text-muted-foreground">
+                    {item.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <section aria-labelledby="life-cycle-map" className="space-y-4">
+          <div>
+            <p className="eyebrow">Life-cycle policy map</p>
+            <h2 id="life-cycle-map" className="section-heading mt-2">
+              Mapping budget instruments to vulnerable population groups
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              The cards below provide a practical way to connect budget announcements
+              with NFHS indicators by age/life stage.
             </p>
           </div>
 
           <div className="grid gap-4 lg:grid-cols-2">
             {lifeCycleMappings.map((mapping) => (
               <Card key={mapping.stage} className={mapping.cardClassName}>
-                <CardHeader className="gap-2">
-                  <CardTitle className="flex items-center gap-2">
-                    <mapping.Icon className="size-4 text-primary" aria-hidden="true" />
+                <CardHeader className="space-y-2 pb-2">
+                  <CardTitle className="flex items-center gap-2 text-lg">
+                    <mapping.Icon className="size-5 text-primary" aria-hidden="true" />
                     {mapping.stage}
                   </CardTitle>
-                  <p className="text-sm font-medium text-foreground/80">{mapping.ageGroup}</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Age focus: {mapping.ageGroup}
+                  </p>
                 </CardHeader>
-                <CardContent className="space-y-3 text-sm text-foreground/85">
+                <CardContent className="grid gap-4 text-sm leading-6">
                   <div>
-                    <p className="font-semibold">NFHS focus indicators</p>
-                    <ul className="mt-1 list-disc space-y-1 pl-4">
-                      {mapping.focusIndicators.map((indicator) => (
-                        <li key={indicator}>{indicator}</li>
+                    <h3 className="mb-1 text-sm font-semibold">NFHS focus indicators</h3>
+                    <ul className="list-inside list-disc text-muted-foreground">
+                      {mapping.focusIndicators.map((item) => (
+                        <li key={item}>{item}</li>
                       ))}
                     </ul>
                   </div>
+
                   <div>
-                    <p className="font-semibold">Key vulnerabilities</p>
-                    <ul className="mt-1 list-disc space-y-1 pl-4">
-                      {mapping.vulnerabilities.map((vulnerability) => (
-                        <li key={vulnerability}>{vulnerability}</li>
+                    <h3 className="mb-1 text-sm font-semibold">Key vulnerabilities</h3>
+                    <ul className="list-inside list-disc text-muted-foreground">
+                      {mapping.vulnerabilities.map((item) => (
+                        <li key={item}>{item}</li>
                       ))}
                     </ul>
                   </div>
+
                   <div>
-                    <p className="font-semibold">Scheme linkage</p>
-                    <p className="mt-1">{mapping.mappedSchemes.join(", ")}</p>
+                    <h3 className="mb-1 text-sm font-semibold">Mapped schemes</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {mapping.mappedSchemes.map((scheme) => (
+                        <Badge key={scheme} variant="secondary">
+                          {scheme}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
+
                   <div>
-                    <p className="font-semibold">Budget signals</p>
-                    <p className="mt-1">{mapping.budgetHeads.join(" · ")}</p>
+                    <h3 className="mb-1 text-sm font-semibold">Budget signals</h3>
+                    <ul className="list-inside list-disc text-muted-foreground">
+                      {mapping.budgetHeads.map((head) => (
+                        <li key={head}>{head}</li>
+                      ))}
+                    </ul>
                   </div>
                 </CardContent>
               </Card>
@@ -452,66 +466,29 @@ export default function BudgetSpeechPage() {
           </div>
         </section>
 
-        <section aria-labelledby="stage-budget-table" className="space-y-4">
-          <div className="space-y-2">
-            <p className="eyebrow">Design table</p>
-            <h2 id="stage-budget-table" className="section-heading">
-              Life-stage to budget mapping table
+        <section aria-labelledby="allocation-table" className="space-y-4">
+          <div>
+            <p className="eyebrow">Major heads</p>
+            <h2 id="allocation-table" className="section-heading mt-2">
+              Budget heads relevant for NFHS-linked planning
             </h2>
           </div>
-
           <div className="overflow-hidden rounded-xl border bg-card">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="min-w-48">Life stage</TableHead>
-                  <TableHead className="min-w-32">Age group</TableHead>
-                  <TableHead className="min-w-72">NFHS focus indicators</TableHead>
-                  <TableHead className="min-w-72">Mapped schemes</TableHead>
-                  <TableHead className="min-w-72">Budget heads</TableHead>
+                  <TableHead className="min-w-72">Budget head</TableHead>
+                  <TableHead>Category</TableHead>
+                  <TableHead className="text-right">Amount</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {lifeCycleMappings.map((mapping) => (
-                  <TableRow key={mapping.stage}>
-                    <TableCell className="font-semibold">{mapping.stage}</TableCell>
-                    <TableCell>{mapping.ageGroup}</TableCell>
-                    <TableCell>{mapping.focusIndicators.join(", ")}</TableCell>
-                    <TableCell>{mapping.mappedSchemes.join(", ")}</TableCell>
-                    <TableCell>{mapping.budgetHeads.join(", ")}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-        </section>
-
-        <section aria-labelledby="mapped-budget-heads" className="space-y-4">
-          <div className="space-y-2">
-            <p className="eyebrow">Priority budget heads</p>
-            <h2 id="mapped-budget-heads" className="section-heading">
-              Budget heads relevant to NFHS-6 outcomes
-            </h2>
-          </div>
-
-          <div className="overflow-hidden rounded-xl border bg-card">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Budget head</TableHead>
-                  <TableHead className="text-right">Allocation</TableHead>
-                  <TableHead className="hidden md:table-cell">Policy relevance</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {mappedBudgetHeads.map((head) => (
-                  <TableRow key={head.head}>
-                    <TableCell className="font-medium">{head.head}</TableCell>
-                    <TableCell className="text-right font-semibold tabular-nums">
-                      {head.amount}
-                    </TableCell>
-                    <TableCell className="hidden text-muted-foreground md:table-cell">
-                      {head.category}
+                {budgetHeads.map((item) => (
+                  <TableRow key={item.head}>
+                    <TableCell className="font-medium">{item.head}</TableCell>
+                    <TableCell>{item.category}</TableCell>
+                    <TableCell className="text-right tabular-nums">
+                      {item.amount}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -521,38 +498,37 @@ export default function BudgetSpeechPage() {
         </section>
 
         <section
-          aria-labelledby="next-actions"
-          className="rounded-xl border border-primary/20 bg-primary/5 p-5 sm:p-6"
+          aria-labelledby="how-to-use"
+          className="rounded-xl border border-amber-300/50 bg-gradient-to-br from-amber-100 to-yellow-50 p-5 dark:from-amber-950/25 dark:to-yellow-950/10"
         >
-          <h2 id="next-actions" className="section-heading text-xl">
-            How this page should be used
+          <h2
+            id="how-to-use"
+            className="flex items-center gap-2 text-lg font-semibold tracking-tight"
+          >
+            <AlertTriangle className="size-5 text-amber-600" aria-hidden="true" />
+            How to use this page for action
           </h2>
-          <ul className="mt-3 space-y-2 text-sm leading-6 text-muted-foreground">
-            <li>
-              1. Select district risk indicators in the NFHS dashboard and identify
-              top life-cycle vulnerabilities.
-            </li>
-            <li>
-              2. Use the stage mapping table to align vulnerabilities with relevant
-              scheme pathways.
-            </li>
-            <li>
-              3. Track whether priority budget heads and allocations are aligned to
-              observed district deprivation.
-            </li>
-          </ul>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <a
-              href="/Budget_Speech_2026_2027.pdf"
-              className={cn(buttonVariants({ variant: "outline" }))}
-              download
-            >
-              <FileText className="size-4" aria-hidden="true" />
-              Open source PDF
-            </a>
-            <Link href="/" className={cn(buttonVariants({ variant: "ghost" }))}>
-              Back to home
-            </Link>
+          <div className="mt-3 grid gap-3 text-sm leading-6 text-muted-foreground sm:grid-cols-3">
+            <p className="rounded-lg bg-background/80 p-3">
+              <ArrowRight className="mr-1 inline size-4 text-primary" aria-hidden="true" />
+              Use this as a bridge between fiscal announcements and district-level
+              NFHS indicators.
+            </p>
+            <p className="rounded-lg bg-background/80 p-3">
+              <ArrowRight className="mr-1 inline size-4 text-primary" aria-hidden="true" />
+              Prioritize interventions where high vulnerability and large budget
+              opportunity overlap.
+            </p>
+            <p className="rounded-lg bg-background/80 p-3">
+              <ArrowRight className="mr-1 inline size-4 text-primary" aria-hidden="true" />
+              Track annual movement in high-priority indicators for each life stage.
+            </p>
+          </div>
+          <div className="mt-4 flex flex-wrap items-center gap-2 text-sm">
+            <Leaf className="size-4 text-green-600" aria-hidden="true" />
+            <span className="text-muted-foreground">
+              Source: Uttar Pradesh Budget Speech 2026-27 and NFHS-6 static dataset.
+            </span>
           </div>
         </section>
       </div>

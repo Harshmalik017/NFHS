@@ -76,7 +76,10 @@ export default function HomePage() {
         <section aria-labelledby="district-map" className="space-y-5">
           <div>
             <p className="eyebrow">District map</p>
-            <h2 id="district-map" className="section-heading mt-2 flex items-center gap-2">
+            <h2
+              id="district-map"
+              className="section-heading mt-2 flex items-center gap-2"
+            >
               <MapIcon className="size-5 text-primary" aria-hidden="true" />
               See how one indicator varies across Uttar Pradesh
             </h2>
@@ -88,7 +91,6 @@ export default function HomePage() {
         </section>
 
         <HomeStateNfhsTable rows={stateRows} />
-
       </div>
     </PageShell>
   );

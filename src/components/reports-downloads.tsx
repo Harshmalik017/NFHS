@@ -17,14 +17,15 @@ import { cn } from "@/lib/utils";
 
 const reports = [
   {
-    label: "Uttar Pradesh all district report (PDF)",
+    label: "NFHS-6 Uttar Pradesh state fact sheet (PDF)",
     fileName: "NFHS-6_StateFact_Uttar_Pradesh.pdf",
     href: "/NFHS-6_StateFact_Uttar_Pradesh.pdf",
     Icon: FileText,
   },
   {
-    label: "NFHS-6 India factsheet (PDF)",
-    fileName: "National Family Health Survey (NFHS-6) 2023-2024 Fact Sheets.pdf",
+    label: "NFHS-6 India fact sheets (PDF)",
+    fileName:
+      "National Family Health Survey (NFHS-6) 2023-2024 Fact Sheets.pdf",
     href: "/National%20Family%20Health%20Survey%20(NFHS-6)%202023-2024%20Fact%20Sheets.pdf",
     Icon: FileText,
   },
@@ -41,12 +42,6 @@ const reports = [
     Icon: FileText,
   },
   {
-    label: "NFHS-4 Uttar Pradesh state factsheet (PDF)",
-    fileName: "NFHS-4_StateFactSheet_Uttar Pradesh.pdf",
-    href: "/NFHS-4_StateFactSheet_Uttar%20Pradesh.pdf",
-    Icon: FileText,
-  },
-  {
     label: "NFHS-5 Uttar Pradesh state report (PDF)",
     fileName: "NFHS-5_StateReport_Uttar Pradesh.pdf",
     href: "/NFHS-5_StateReport_Uttar%20Pradesh.pdf",
@@ -59,15 +54,15 @@ const reports = [
     Icon: FileText,
   },
   {
-    label: "NFHS-4 Uttar Pradesh state report (PDF)",
-    fileName: "NFHS-4_StateReport_Uttar Pradesh.pdf",
-    href: "/NFHS-4_StateReport_Uttar%20Pradesh.pdf",
+    label: "NFHS-4 Uttar Pradesh state factsheet (PDF)",
+    fileName: "NFHS-4_StateFactSheet_Uttar Pradesh.pdf",
+    href: "/NFHS-4_StateFactSheet_Uttar%20Pradesh.pdf",
     Icon: FileText,
   },
   {
-    label: "NFHS-1 India report (PDF)",
-    fileName: "NFHS-1_INDIA_Report.pdf",
-    href: "/NFHS-1_INDIA_Report.pdf",
+    label: "NFHS-4 Uttar Pradesh state report (PDF)",
+    fileName: "NFHS-4_StateReport_Uttar Pradesh.pdf",
+    href: "/NFHS-4_StateReport_Uttar%20Pradesh.pdf",
     Icon: FileText,
   },
   {
@@ -80,6 +75,12 @@ const reports = [
     label: "NFHS-2 Uttar Pradesh state report (PDF)",
     fileName: "NFHS-2_StateReport_Uttar Pradesh.pdf",
     href: "/NFHS-2_StateReport_Uttar%20Pradesh.pdf",
+    Icon: FileText,
+  },
+  {
+    label: "NFHS-1 India report (PDF)",
+    fileName: "NFHS-1_INDIA_Report.pdf",
+    href: "/NFHS-1_INDIA_Report.pdf",
     Icon: FileText,
   },
 ];
@@ -119,7 +120,7 @@ export function ReportsDownloads() {
                 Sample size report (CSV)
               </div>
             </TableCell>
-            <TableCell className="hidden sm:table-cell text-muted-foreground">
+            <TableCell className="hidden text-muted-foreground sm:table-cell">
               up-district-sample-sizes.csv
             </TableCell>
             <TableCell className="text-right">
@@ -138,7 +139,7 @@ export function ReportsDownloads() {
                   {report.label}
                 </div>
               </TableCell>
-              <TableCell className="hidden sm:table-cell text-muted-foreground">
+              <TableCell className="hidden text-muted-foreground sm:table-cell">
                 {report.fileName}
               </TableCell>
               <TableCell className="text-right">

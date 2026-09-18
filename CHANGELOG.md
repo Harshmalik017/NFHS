@@ -26,6 +26,8 @@ policy.
 - Added NFHS-1 India and NFHS-2/NFHS-3 Uttar Pradesh PDF reports to the
   reports page download list.
 - Added the NFHS-6 Uttar Pradesh compendium as the primary project data source.
+- Added a new Budget Speech page that maps Uttar Pradesh Budget 2026-27
+  priorities to NFHS-6 outcomes with colorful insight cards and sector tables.
 - Initialized the Next.js App Router, TypeScript, Tailwind CSS, and shadcn/ui
   application foundation.
 - Added the responsive application shell, theme support, methodology page,
