@@ -42,8 +42,8 @@ application evolves.
   beneficiary/sector categories, and clearly labelled analytical NFHS
   life-cycle mappings
 - **Budget downloads:** The Budget Speech page offers the official speech PDF
-  and a print-ready complete-page PDF action; inline source-preview actions are
-  intentionally omitted
+  and a server-generated A4 landscape complete-page PDF download; inline
+  source-preview actions are intentionally omitted
 - **Deployment:** GitHub public repository and Vercel
 - **Repository:** <https://github.com/Harshmalik017/NFHS>
 

@@ -8,6 +8,7 @@ export function PageShell({
   headerExtra,
   alignHeaderTop = false,
   fullWidthHeader = false,
+  className = "",
   children,
 }: {
   eyebrow: string;
@@ -17,10 +18,11 @@ export function PageShell({
   headerExtra?: ReactNode;
   alignHeaderTop?: boolean;
   fullWidthHeader?: boolean;
+  className?: string;
   children: ReactNode;
 }) {
   return (
-    <div className="page-shell page-container py-10 sm:py-14">
+    <div className={`page-shell page-container py-10 sm:py-14 ${className}`}>
       <header
         className={`page-shell-header flex flex-col gap-6 pb-8 ${
           fullWidthHeader

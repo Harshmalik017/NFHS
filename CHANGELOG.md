@@ -31,6 +31,12 @@ policy.
   showing allocation changes without amount/source columns, removing inline
   source-preview actions, and adding official-speech and complete-page PDF
   download options.
+- Displayed all five NFHS life-cycle cards in one desktop row and set the
+  Budget Speech page PDF layout to A4 landscape.
+- Replaced the browser print-dialog workflow with a validated server-generated
+  PDF download containing every Budget Speech page section.
+- Added the five supplied life-cycle reference images to their matching web
+  cards and embedded the same images in the generated landscape PDF.
 - Added four NFHS-4/NFHS-5 Uttar Pradesh PDF reports to the reports page
   download list.
 - Added NFHS-1 India and NFHS-2/NFHS-3 Uttar Pradesh PDF reports to the

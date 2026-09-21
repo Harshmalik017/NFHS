@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   Baby,
   Building2,
@@ -22,7 +23,10 @@ import {
   Users,
 } from "lucide-react";
 
-import { BudgetSpeechDownloads } from "@/components/budget-speech-downloads";
+import {
+  BudgetSpeechDownloads,
+} from "@/components/budget-speech-downloads";
+import type { BudgetSpeechPdfData } from "@/lib/budget-speech-pdf";
 import { PageShell } from "@/components/page-shell";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -140,6 +144,7 @@ const revenueTargets = [
 const categorisationCards = [
   {
     title: "Early childhood (0-5 years)",
+    imagePath: "/images/Early childhood (0-5 years).png" as const,
     indicatorPoints: [
       "Birth registration",
       "Institutional birth",
@@ -161,6 +166,7 @@ const categorisationCards = [
   },
   {
     title: "School-age children (6-14 years)",
+    imagePath: "/images/School-age children (6-14 years).png" as const,
     indicatorPoints: [
       "School attendance",
       "Female population 6+ ever attended school",
@@ -182,6 +188,7 @@ const categorisationCards = [
   },
   {
     title: "Adolescents and youth (10-19 years)",
+    imagePath: "/images/Adolescents and youth (10-19 years).png" as const,
     indicatorPoints: [
       "Women 15-19 already mothers/pregnant",
       "Women 15-49 with schooling",
@@ -203,6 +210,7 @@ const categorisationCards = [
   },
   {
     title: "Women of reproductive age (15-49 years)",
+    imagePath: "/images/Women of reproductive age (15-49 years).png" as const,
     indicatorPoints: [
       "ANC and institutional delivery",
       "Family planning/TFR",
@@ -219,6 +227,7 @@ const categorisationCards = [
   },
   {
     title: "Adults and elderly (50+ years)",
+    imagePath: "/images/Adults and elderly (50+ years).png" as const,
     indicatorPoints: [
       "Hypertension",
       "Diabetes/high blood sugar",
@@ -414,13 +423,47 @@ const speechPriorityCategories = [
   },
 ];
 
+const budgetSpeechPdfData: BudgetSpeechPdfData = {
+  overallBudgetSize: overallBudgetSize.map(({ title, value, note }) => ({
+    title,
+    value,
+    note,
+  })),
+  economicHighlights,
+  sectorAllocations,
+  revenueTargets,
+  speechPriorityCategories: speechPriorityCategories.map(
+    ({ title, subtitle, highlights }) => ({ title, subtitle, highlights }),
+  ),
+  categorisationCards: categorisationCards.map(
+    ({
+      title,
+      imagePath,
+      indicatorPoints,
+      lifeCycleFocus,
+      vulnerabilityPoints,
+      selectedSchemes,
+      budgetLines,
+    }) => ({
+      title,
+      imagePath,
+      indicatorPoints,
+      lifeCycleFocus,
+      vulnerabilityPoints,
+      selectedSchemes,
+      budgetLines,
+    }),
+  ),
+};
+
 export default function BudgetSpeechPage() {
   return (
     <PageShell
+      className="budget-speech-print-root"
       eyebrow="Uttar Pradesh Budget Speech 2026-27"
       title="Budget highlights with NFHS-6 policy context"
       description="A complete structured summary of the overall budget size, economic highlights, sector-wise allocation changes, revenue targets, and NFHS-linked planning context."
-      actions={<BudgetSpeechDownloads />}
+      actions={<BudgetSpeechDownloads data={budgetSpeechPdfData} />}
       fullWidthHeader
       headerExtra={
         <div className="flex flex-wrap gap-2">
@@ -601,7 +644,10 @@ export default function BudgetSpeechPage() {
           </div>
         </section>
 
-        <section aria-labelledby="budget-categorisation" className="space-y-4">
+        <section
+          aria-labelledby="budget-categorisation"
+          className="budget-categorisation space-y-4"
+        >
           <div>
             <p className="eyebrow">Categorisation cards</p>
             <h2 id="budget-categorisation" className="section-heading mt-2">
@@ -611,12 +657,21 @@ export default function BudgetSpeechPage() {
               From data to action: linking district indicators with schemes and budget heads.
             </p>
           </div>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="budget-categorisation-grid grid gap-4 md:grid-cols-2 xl:grid-cols-5">
             {categorisationCards.map((card) => (
               <Card
                 key={card.title}
                 className={cn("budget-print-card border-primary/20 bg-gradient-to-br", card.className)}
               >
+                <div className="relative mx-3 mt-3 aspect-[4/3] overflow-hidden rounded-xl border border-primary/25 bg-background">
+                  <Image
+                    src={card.imagePath}
+                    alt={`${card.title} life-cycle planning reference`}
+                    fill
+                    sizes="(min-width: 1280px) 20vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-start justify-between gap-3 text-base">
                     <span>{card.title}</span>

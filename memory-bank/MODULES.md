@@ -257,8 +257,12 @@ shows that a single observations file sends unnecessary data to clients.
 - cover the major speech categories, including Kisan, Mahila, Yuva, education,
   health, industry, infrastructure, water/energy, rural/urban development,
   welfare, environment, tourism, law/justice, and transport;
-- provide one official speech download and one print-ready complete-page PDF
-  action without inline source-preview controls;
+- provide one official speech download and one validated, server-generated
+  complete-page PDF action without inline source-preview controls;
+- display the five life-cycle cards in one desktop row and print this route in
+  A4 landscape orientation;
+- use the category-named assets in `public/images` above the matching
+  life-cycle cards and include them in the generated PDF;
 - distinguish speech-verified facts from the analytical NFHS life-cycle,
   vulnerability, and scheme-linkage framework.
 

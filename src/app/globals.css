@@ -163,6 +163,11 @@
     margin: 14mm 12mm 18mm;
   }
 
+  @page budget-speech-landscape {
+    size: A4 landscape;
+    margin: 10mm;
+  }
+
   body {
     background: #fff !important;
     color: #111827 !important;
@@ -197,6 +202,31 @@
 
   .budget-speech-page {
     print-color-adjust: exact;
+  }
+
+  .budget-speech-print-root {
+    page: budget-speech-landscape;
+  }
+
+  .budget-categorisation {
+    break-before: page;
+  }
+
+  .budget-categorisation-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 3mm !important;
+  }
+
+  .budget-categorisation-grid [data-slot="card"] {
+    font-size: 10px;
+  }
+
+  .budget-categorisation-grid [data-slot="card-content"] {
+    gap: 2mm;
+  }
+
+  .budget-categorisation-grid .budget-categorisation-section {
+    padding: 2.5mm;
   }
 
   .budget-allocation-table {

@@ -2,10 +2,11 @@
 
 import { Download, FileDown } from "lucide-react";
 
+import type { BudgetSpeechPdfData } from "@/lib/budget-speech-pdf";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export function BudgetSpeechDownloads() {
+export function BudgetSpeechDownloads({ data }: { data: BudgetSpeechPdfData }) {
   return (
     <div className="flex flex-col gap-2 sm:flex-row print:hidden">
       <a
@@ -16,15 +17,21 @@ export function BudgetSpeechDownloads() {
         <Download className="size-4" aria-hidden="true" />
         Download UP Budget Speech 2026-27
       </a>
-      <Button
-        type="button"
-        variant="outline"
-        className="whitespace-nowrap"
-        onClick={() => window.print()}
-      >
-        <FileDown className="size-4" aria-hidden="true" />
-        Download Complete Budget Speech Page PDF
-      </Button>
+      <form action="/api/budget-speech-page-pdf" method="post">
+        <input
+          type="hidden"
+          name="budgetSpeechData"
+          value={JSON.stringify(data)}
+        />
+        <Button
+          type="submit"
+          variant="outline"
+          className="w-full whitespace-nowrap"
+        >
+          <FileDown className="size-4" aria-hidden="true" />
+          Download Complete Budget Speech Page PDF
+        </Button>
+      </form>
     </div>
   );
 }
