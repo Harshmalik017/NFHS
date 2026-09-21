@@ -41,9 +41,9 @@ application evolves.
 - **Budget Speech:** `/budget-speech` presents verified fiscal figures,
   beneficiary/sector categories, and clearly labelled analytical NFHS
   life-cycle mappings
-- **Budget source previews:** Eye actions labelled `Budget Speech 2026-27` open
-  the exact internally mapped PDF page in a dialog; page numbers are not shown
-  in the trigger text
+- **Budget downloads:** The Budget Speech page offers the official speech PDF
+  and a print-ready complete-page PDF action; inline source-preview actions are
+  intentionally omitted
 - **Deployment:** GitHub public repository and Vercel
 - **Repository:** <https://github.com/Harshmalik017/NFHS>
 

@@ -27,6 +27,10 @@ policy.
 - Verified Budget Speech source links against the 32-page PDF, replaced visible
   page-number labels with consistent source-preview actions, and distinguished
   speech-verified facts from analytical NFHS life-cycle mappings.
+- Simplified the Budget Speech page by consolidating the revenue-surplus metric,
+  showing allocation changes without amount/source columns, removing inline
+  source-preview actions, and adding official-speech and complete-page PDF
+  download options.
 - Added four NFHS-4/NFHS-5 Uttar Pradesh PDF reports to the reports page
   download list.
 - Added NFHS-1 India and NFHS-2/NFHS-3 Uttar Pradesh PDF reports to the

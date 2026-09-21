@@ -253,23 +253,21 @@ shows that a single observations file sends unnecessary data to clients.
 **Responsibilities:**
 
 - summarize the Uttar Pradesh Budget Speech 2026-27 macro-fiscal position,
-  receipts/expenditure, sector allocations, and revenue targets;
+  headline fiscal indicators, sector allocation changes, and revenue targets;
 - cover the major speech categories, including Kisan, Mahila, Yuva, education,
   health, industry, infrastructure, water/energy, rural/urban development,
   welfare, environment, tourism, law/justice, and transport;
-- map verified values to the matching page in the 32-page public PDF;
-- use an eye action labelled `Budget Speech 2026-27` to preview the internally
-  mapped source page in a dialog with an explicit red close action;
+- provide one official speech download and one print-ready complete-page PDF
+  action without inline source-preview controls;
 - distinguish speech-verified facts from the analytical NFHS life-cycle,
   vulnerability, and scheme-linkage framework.
 
 **Main components:**
 
 - `BudgetSpeechPage`
-- `BudgetSpeechPagePreview`
+- `BudgetSpeechDownloads`
 - `Card`
 - `Table`
-- `Dialog`
 
 ## 4. Data modules
 

@@ -3,7 +3,6 @@ import {
   Baby,
   Building2,
   BusFront,
-  Download,
   Droplets,
   Factory,
   GraduationCap,
@@ -12,7 +11,6 @@ import {
   Leaf,
   LineChart,
   MapPinned,
-  ReceiptText,
   Route,
   Scale,
   School,
@@ -24,10 +22,9 @@ import {
   Users,
 } from "lucide-react";
 
-import { BudgetSpeechPagePreview } from "@/components/budget-speech-page-preview";
+import { BudgetSpeechDownloads } from "@/components/budget-speech-downloads";
 import { PageShell } from "@/components/page-shell";
 import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -57,129 +54,87 @@ const overallBudgetSize = [
     value: "₹9,12,696.35 crore",
     note: "Up ~12.9% over 2025-26",
     gradient: "from-blue-500/20 to-cyan-500/20",
-    sourcePage: 31,
   },
   {
     title: "Capital expenditure",
     value: "19.5%",
     note: "Share of total budget",
     gradient: "from-indigo-500/20 to-violet-500/20",
-    sourcePage: 7,
   },
   {
     title: "New schemes",
     value: "₹43,565.33 crore",
     note: "Allocated to new initiatives",
     gradient: "from-emerald-500/20 to-teal-500/20",
-    sourcePage: 31,
+  },
+  {
+    title: "Revenue surplus",
+    value: "₹64,457.57 crore",
+    note: "Positive surplus position",
+    gradient: "from-teal-500/20 to-emerald-500/20",
   },
   {
     title: "Fiscal deficit",
     value: "₹1,18,480.59 crore",
     note: "2.98% of estimated GSDP, within the 3% limit set by the 16th Finance Commission",
     gradient: "from-amber-500/20 to-orange-500/20",
-    sourcePage: 32,
   },
   {
-    title: "Debt-to-GSDP ratio target",
+    title: "Debt-to-GSDP ratio",
     value: "23.1%",
     note: "From 27% in 2024-25, long-term goal under 20%",
     gradient: "from-fuchsia-500/20 to-pink-500/20",
-    sourcePage: 8,
-  },
-];
-
-const receiptsExpenditure = [
-  {
-    label: "Total receipts",
-    value: "₹8,48,233.18 crore",
-    breakdown:
-      "Revenue receipts ₹7,28,928.12 crore + capital receipts ₹1,19,305.06 crore",
-    sourcePage: 31,
-  },
-  {
-    label: "Total expenditure",
-    value: "₹9,12,696.35 crore",
-    breakdown:
-      "Revenue account ₹6,64,470.55 crore + capital account ₹2,48,225.81 crore",
-    sourcePage: 31,
-  },
-  {
-    label: "Revenue surplus",
-    value: "₹64,457.57 crore",
-    breakdown: "Positive surplus position",
-    sourcePage: 32,
   },
 ];
 
 const economicHighlights = [
-  {
-    text: "UP's GSDP (2024-25 quick estimate): ₹30.25 lakh crore, up 13.4% year-on-year",
-    sourcePage: 2,
-  },
-  {
-    text: "Per capita income: ₹1,09,844 (estimated ₹1,20,000 for 2025-26), more than double the 2016-17 figure",
-    sourcePage: 2,
-  },
-  { text: "Unemployment rate down to 2.24%", sourcePage: 2 },
-  {
-    text: "UP climbed from 29th to 18th in the SDG India Index (2018-19 to 2023-24)",
-    sourcePage: 2,
-  },
-  {
-    text: "~₹50 lakh crore in MoUs signed via Global Investors Summit (Feb 2024), with ~₹15 lakh crore worth of projects already ground-broken",
-    sourcePage: 2,
-  },
+  "UP's GSDP (2024-25 quick estimate): ₹30.25 lakh crore, up 13.4% year-on-year",
+  "Per capita income: ₹1,09,844 (estimated ₹1,20,000 for 2025-26), more than double the 2016-17 figure",
+  "Unemployment rate down to 2.24%",
+  "UP climbed from 29th to 18th in the SDG India Index (2018-19 to 2023-24)",
+  "~₹50 lakh crore in MoUs signed via Global Investors Summit (Feb 2024), with ~₹15 lakh crore worth of projects already ground-broken",
 ];
 
 const sectorAllocations = [
-  { sector: "Basic Education", allocation: "₹77,622 crore", change: "—", sourcePage: 23 },
+  { sector: "Basic Education", change: "—" },
   {
     sector: "Medical, Health & Family Welfare",
-    allocation: "₹37,956 crore",
     change: "+15%",
-    sourcePage: 9,
   },
-  { sector: "Secondary Education", allocation: "₹22,167 crore", change: "+15%", sourcePage: 24 },
-  { sector: "Energy", allocation: "₹65,926 crore", change: "+8%", sourcePage: 14 },
-  { sector: "Irrigation & Flood Control", allocation: "₹18,290 crore", change: "+30%", sourcePage: 13 },
-  { sector: "Roads & Bridges", allocation: "₹34,468 crore", change: "—", sourcePage: 13 },
+  { sector: "Secondary Education", change: "+15%" },
+  { sector: "Energy", change: "+8%" },
+  { sector: "Irrigation & Flood Control", change: "+30%" },
+  { sector: "Roads & Bridges", change: "—" },
   {
     sector: "Namami Gange & Rural Water Supply",
-    allocation: "₹22,676 crore",
     change: "—",
-    sourcePage: 14,
   },
-  { sector: "Panchayati Raj", allocation: "₹32,090 crore", change: "+67%", sourcePage: 19 },
-  { sector: "Rural Development", allocation: "₹25,500 crore", change: "—", sourcePage: 18 },
-  { sector: "Urban Development", allocation: "₹26,514 crore", change: "—", sourcePage: 16 },
-  { sector: "Agriculture", allocation: "₹10,888 crore", change: "+20%", sourcePage: 19 },
-  { sector: "Medical Education", allocation: "₹14,997 crore", change: "—", sourcePage: 9 },
+  { sector: "Panchayati Raj", change: "+67%" },
+  { sector: "Rural Development", change: "—" },
+  { sector: "Urban Development", change: "—" },
+  { sector: "Agriculture", change: "+20%" },
+  { sector: "Medical Education", change: "—" },
   {
     sector: "Infrastructure & Industrial Development",
-    allocation: "₹27,103 crore",
     change: "+13%",
-    sourcePage: 10,
   },
-  { sector: "IT & Electronics", allocation: "₹2,059 crore", change: "+76%", sourcePage: 12 },
-  { sector: "Social Welfare", allocation: "₹14,953 crore", change: "+8%", sourcePage: 28 },
-  { sector: "Women & Child Development", allocation: "₹18,620 crore", change: "+11%", sourcePage: 27 },
-  { sector: "Judiciary", allocation: "₹9,845 crore", change: "+9%", sourcePage: 29 },
+  { sector: "IT & Electronics", change: "+76%" },
+  { sector: "Social Welfare", change: "+8%" },
+  { sector: "Women & Child Development", change: "+11%" },
+  { sector: "Judiciary", change: "+9%" },
   {
     sector: "Vocational Education & Skill Development",
-    allocation: "₹3,349 crore",
     change: "+88%",
-    sourcePage: 25,
   },
-  { sector: "Handloom & Textiles", allocation: "₹5,041 crore", change: "5x increase", sourcePage: 11 },
-  { sector: "Food & Civil Supplies", allocation: "₹20,124 crore", change: "—", sourcePage: 23 },
+  { sector: "Handloom & Textiles", change: "+400%" },
+  { sector: "Food & Civil Supplies", change: "—" },
 ];
 
 const revenueTargets = [
-  { source: "State GST + VAT", target: "₹1,49,956 crore", sourcePage: 30 },
-  { source: "Excise duty", target: "₹71,278 crore", sourcePage: 30 },
-  { source: "Stamps & Registration", target: "₹43,802 crore", sourcePage: 30 },
-  { source: "Vehicle tax", target: "₹15,808 crore", sourcePage: 30 },
+  { source: "State GST + VAT", target: "₹1,49,956 crore" },
+  { source: "Excise duty", target: "₹71,278 crore" },
+  { source: "Stamps & Registration", target: "₹43,802 crore" },
+  { source: "Vehicle tax", target: "₹15,808 crore" },
 ];
 
 const categorisationCards = [
@@ -203,7 +158,6 @@ const categorisationCards = [
     budgetLines: ["Health & Family Welfare: ₹37,956 crore", "Women & Child Development: ₹18,620 crore", "Kanya Sumangala: ₹400 crore"],
     Icon: Baby,
     className: "from-amber-500/10 to-orange-500/10",
-    sourcePage: 27,
   },
   {
     title: "School-age children (6-14 years)",
@@ -225,7 +179,6 @@ const categorisationCards = [
     budgetLines: ["Basic Education: ₹77,622 crore", "Secondary Education: ₹22,167 crore", "Namami Gange & Rural Water: ₹22,676 crore"],
     Icon: School,
     className: "from-cyan-500/10 to-blue-500/10",
-    sourcePage: 23,
   },
   {
     title: "Adolescents and youth (10-19 years)",
@@ -247,7 +200,6 @@ const categorisationCards = [
     budgetLines: ["Kanya Sumangala: ₹400 crore", "Scholarships: ₹3,060.5 crore", "Social welfare schemes: ₹14,953 crore", "Employment missions: ₹200 crore"],
     Icon: UserRoundCheck,
     className: "from-violet-500/10 to-fuchsia-500/10",
-    sourcePage: 27,
   },
   {
     title: "Women of reproductive age (15-49 years)",
@@ -264,7 +216,6 @@ const categorisationCards = [
     budgetLines: ["Health & Family Welfare: ₹37,956 crore", "Women & Child Development: ₹18,620 crore", "Working women hostels: ₹100 crore"],
     Icon: ShieldCheck,
     className: "from-emerald-500/10 to-teal-500/10",
-    sourcePage: 27,
   },
   {
     title: "Adults and elderly (50+ years)",
@@ -281,7 +232,6 @@ const categorisationCards = [
     budgetLines: ["Old age/farmer pension: ₹8,950 crore", "Nirashrit Mahila Pension: ₹3,500 crore", "Divyang pension: ₹1,470 crore"],
     Icon: HeartPulse,
     className: "from-rose-500/10 to-pink-500/10",
-    sourcePage: 28,
   },
 ];
 
@@ -294,7 +244,6 @@ const speechPriorityCategories = [
       "₹94,668 crore transferred to 3.12 crore farmers under PM-KISAN up to December 2025",
       "₹5,110 crore in crop-insurance claims paid to about 62 lakh farmers during 2017-2025",
     ],
-    sourcePage: 4,
     Icon: Sprout,
     className: "from-lime-500/10 to-green-500/10",
   },
@@ -306,7 +255,6 @@ const speechPriorityCategories = [
       "₹400 crore for Mukhyamantri Kanya Sumangala Yojana",
       "₹100 crore for working women’s hostels and ₹35 crore for Shramjeevi Mahila hostels",
     ],
-    sourcePage: 27,
     Icon: UserRoundCheck,
     className: "from-pink-500/10 to-rose-500/10",
   },
@@ -318,7 +266,6 @@ const speechPriorityCategories = [
       "Skill Development Mission training and artisan training receive major support",
       "Sports facilities, youth coaching and tablet/smartphone programmes continue",
     ],
-    sourcePage: 25,
     Icon: Trophy,
     className: "from-violet-500/10 to-indigo-500/10",
   },
@@ -330,7 +277,6 @@ const speechPriorityCategories = [
       "₹22,167 crore for Secondary Education, 15% above 2025-26",
       "Model schools, girls’ residential schools, smart schools and skill modernisation",
     ],
-    sourcePage: 23,
     Icon: GraduationCap,
     className: "from-sky-500/10 to-blue-500/10",
   },
@@ -342,7 +288,6 @@ const speechPriorityCategories = [
       "₹14,997 crore for Medical Education",
       "NHM, Ayushman Bharat, medical colleges and Cancer Institute support",
     ],
-    sourcePage: 9,
     Icon: HeartPulse,
     className: "from-red-500/10 to-rose-500/10",
   },
@@ -354,7 +299,6 @@ const speechPriorityCategories = [
       "₹8,950 crore for old-age/farmer pensions",
       "Support for SC, OBC, minority, tribal and Divyangjan beneficiaries",
     ],
-    sourcePage: 28,
     Icon: Users,
     className: "from-purple-500/10 to-fuchsia-500/10",
   },
@@ -366,7 +310,6 @@ const speechPriorityCategories = [
       "₹5,000 crore for industrial-area expansion and new industrial areas",
       "MSME employment zones, youth enterprise loans and defence-corridor investment",
     ],
-    sourcePage: 10,
     Icon: Factory,
     className: "from-slate-500/10 to-zinc-500/10",
   },
@@ -378,7 +321,6 @@ const speechPriorityCategories = [
       "UP AI Mission, State Data Authority and Cyber Security Operations Centre",
       "Eight data-centre parks with a 900 MW capacity target",
     ],
-    sourcePage: 12,
     Icon: Building2,
     className: "from-cyan-500/10 to-violet-500/10",
   },
@@ -390,7 +332,6 @@ const speechPriorityCategories = [
       "₹4,808 crore for bridges and ₹1,700 crore for rail over/under bridges",
       "North-South Corridor, ring roads, bypasses and industrial-connectivity roads",
     ],
-    sourcePage: 13,
     Icon: Route,
     className: "from-orange-500/10 to-amber-500/10",
   },
@@ -402,7 +343,6 @@ const speechPriorityCategories = [
       "₹22,676 crore for Namami Gange & Rural Water Supply",
       "₹65,926 crore for Energy and ₹1,500 crore for PM Kusum Suryaghar",
     ],
-    sourcePage: 14,
     Icon: Droplets,
     className: "from-blue-500/10 to-teal-500/10",
   },
@@ -414,7 +354,6 @@ const speechPriorityCategories = [
       "₹32,090 crore for Panchayati Raj, 67% above 2025-26",
       "Rural employment, village infrastructure and local service delivery",
     ],
-    sourcePage: 18,
     Icon: MapPinned,
     className: "from-emerald-500/10 to-lime-500/10",
   },
@@ -426,7 +365,6 @@ const speechPriorityCategories = [
       "₹3,500 crore for the Urban Expansion/New City Promotion Scheme",
       "Urban sanitation, women-friendly public facilities and city infrastructure",
     ],
-    sourcePage: 16,
     Icon: Building2,
     className: "from-indigo-500/10 to-sky-500/10",
   },
@@ -438,7 +376,6 @@ const speechPriorityCategories = [
       "Women beat officers and Mission Shakti safety measures continue",
       "₹9,845 crore for Justice, including court complexes and fast-track courts",
     ],
-    sourcePage: 8,
     Icon: Scale,
     className: "from-stone-500/10 to-slate-500/10",
   },
@@ -450,7 +387,6 @@ const speechPriorityCategories = [
       "Tourist-site development support for major pilgrimage destinations",
       "Cultural centres and museums highlighting regional and tribal heritage",
     ],
-    sourcePage: 18,
     Icon: Landmark,
     className: "from-yellow-500/10 to-orange-500/10",
   },
@@ -462,7 +398,6 @@ const speechPriorityCategories = [
       "Night Safari Park support in the Kukrail forest area",
       "World Bank-assisted UP Clean Air Management Project",
     ],
-    sourcePage: 26,
     Icon: Leaf,
     className: "from-green-500/10 to-emerald-500/10",
   },
@@ -474,7 +409,6 @@ const speechPriorityCategories = [
       "EV buses, bus terminals, charging stations and road-safety programmes",
       "Fiscal deficit maintained within the 3% ceiling for 2026-27",
     ],
-    sourcePage: 30,
     Icon: BusFront,
     className: "from-teal-500/10 to-cyan-500/10",
   },
@@ -485,17 +419,9 @@ export default function BudgetSpeechPage() {
     <PageShell
       eyebrow="Uttar Pradesh Budget Speech 2026-27"
       title="Budget highlights with NFHS-6 policy context"
-      description="A complete structured summary of all requested budget blocks: overall budget size, receipts and expenditure, economic highlights, sector-wise allocations, and revenue targets."
-      actions={
-        <a
-          href="/Budget_Speech_2026_2027.pdf"
-          className={cn(buttonVariants())}
-          download="Budget_Speech_2026_2027.pdf"
-        >
-          <Download className="size-4" aria-hidden="true" />
-          Download Budget PDF
-        </a>
-      }
+      description="A complete structured summary of the overall budget size, economic highlights, sector-wise allocation changes, revenue targets, and NFHS-linked planning context."
+      actions={<BudgetSpeechDownloads />}
+      fullWidthHeader
       headerExtra={
         <div className="flex flex-wrap gap-2">
           <Badge variant="secondary">Budget 2026-27</Badge>
@@ -504,26 +430,20 @@ export default function BudgetSpeechPage() {
         </div>
       }
     >
-      <div className="space-y-10">
+      <div className="budget-speech-page space-y-10">
         <section aria-labelledby="overall-budget-size" className="space-y-4">
           <div>
             <p className="eyebrow">Overall budget size</p>
-            <div className="mt-2 flex flex-wrap items-center gap-3">
-              <h2 id="overall-budget-size" className="section-heading flex items-center gap-2">
-                <Landmark className="size-5 text-primary" aria-hidden="true" />
-                Headline fiscal indicators
-              </h2>
-              <BudgetSpeechPagePreview page={31} title="Overall budget size references" />
-            </div>
+            <h2 id="overall-budget-size" className="section-heading mt-2 flex items-center gap-2">
+              <Landmark className="size-5 text-primary" aria-hidden="true" />
+              Headline fiscal indicators
+            </h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {overallBudgetSize.map((item) => (
-              <Card key={item.title} className={cn("border-primary/20 bg-gradient-to-br", item.gradient)}>
+              <Card key={item.title} className={cn("budget-print-card border-primary/20 bg-gradient-to-br", item.gradient)}>
                 <CardHeader className="pb-2">
-                  <CardDescription className="flex items-center justify-between gap-2 text-foreground/80">
-                    <span>{item.title}</span>
-                    <BudgetSpeechPagePreview page={item.sourcePage} title={item.title} />
-                  </CardDescription>
+                  <CardDescription className="text-foreground/80">{item.title}</CardDescription>
                   <CardTitle className="text-2xl">{item.value}</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -534,56 +454,19 @@ export default function BudgetSpeechPage() {
           </div>
         </section>
 
-        <section aria-labelledby="receipts-expenditure" className="space-y-4">
-          <div>
-            <p className="eyebrow">Receipts & expenditure</p>
-            <div className="mt-2 flex flex-wrap items-center gap-3">
-              <h2 id="receipts-expenditure" className="section-heading flex items-center gap-2">
-                <ReceiptText className="size-5 text-primary" aria-hidden="true" />
-                Fiscal flow snapshot
-              </h2>
-              <BudgetSpeechPagePreview page={31} title="Receipts and expenditure references" />
-            </div>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {receiptsExpenditure.map((item) => (
-              <Card key={item.label} className="border-primary/20 bg-primary/5">
-                <CardHeader className="pb-2">
-                  <CardTitle className="flex items-center justify-between gap-2 text-lg">
-                    <span>{item.label}</span>
-                    <BudgetSpeechPagePreview page={item.sourcePage} title={item.label} />
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <p className="text-2xl font-semibold tracking-tight">{item.value}</p>
-                  <p className="text-sm text-muted-foreground">{item.breakdown}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
         <section aria-labelledby="economic-highlights" className="space-y-4">
           <div>
             <p className="eyebrow">Economic highlights</p>
-            <div className="mt-2 flex flex-wrap items-center gap-3">
-              <h2 id="economic-highlights" className="section-heading flex items-center gap-2">
-                <LineChart className="size-5 text-primary" aria-hidden="true" />
-                Growth and development signals
-              </h2>
-              <BudgetSpeechPagePreview page={2} title="Economic highlights references" />
-            </div>
+            <h2 id="economic-highlights" className="section-heading mt-2 flex items-center gap-2">
+              <LineChart className="size-5 text-primary" aria-hidden="true" />
+              Growth and development signals
+            </h2>
           </div>
-          <Card className="border-primary/20 bg-gradient-to-br from-sky-500/10 to-indigo-500/10">
+          <Card className="budget-print-card border-primary/20 bg-gradient-to-br from-sky-500/10 to-indigo-500/10">
             <CardContent className="pt-6">
               <ul className="space-y-3 text-sm leading-6 text-muted-foreground">
                 {economicHighlights.map((item) => (
-                  <li key={item.text} className="list-inside list-disc">
-                    <span>{item.text}</span>{" "}
-                    <span className="ml-1 inline-flex align-middle">
-                      <BudgetSpeechPagePreview page={item.sourcePage} title={item.text} />
-                    </span>
-                  </li>
+                  <li key={item} className="list-inside list-disc">{item}</li>
                 ))}
               </ul>
             </CardContent>
@@ -593,33 +476,24 @@ export default function BudgetSpeechPage() {
         <section aria-labelledby="sector-allocations" className="space-y-4">
           <div>
             <p className="eyebrow">Sector-wise allocations</p>
-            <div className="mt-2 flex flex-wrap items-center gap-3">
-              <h2 id="sector-allocations" className="section-heading">
-                Major allocations and year-on-year change
-              </h2>
-              <BudgetSpeechPagePreview page={7} title="Sector-wise allocations overview" />
-            </div>
+            <h2 id="sector-allocations" className="section-heading mt-2">
+              Year-on-year allocation change
+            </h2>
           </div>
           <div className="overflow-hidden rounded-xl border bg-card">
-            <div className="max-h-[34rem] overflow-auto">
+            <div className="budget-allocation-table max-h-[34rem] overflow-auto">
               <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead className="min-w-80">Sector</TableHead>
-                    <TableHead className="text-right">Allocation</TableHead>
-                    <TableHead className="text-right">Change vs 2025-26</TableHead>
-                    <TableHead className="text-right">Source</TableHead>
+                    <TableHead className="text-right">Allocation change vs 2025-26</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {sectorAllocations.map((row) => (
                     <TableRow key={row.sector}>
                       <TableCell className="font-medium">{row.sector}</TableCell>
-                      <TableCell className="text-right tabular-nums">{row.allocation}</TableCell>
                       <TableCell className="text-right tabular-nums">{row.change}</TableCell>
-                      <TableCell className="text-right">
-                        <BudgetSpeechPagePreview page={row.sourcePage} title={row.sector} />
-                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -631,22 +505,16 @@ export default function BudgetSpeechPage() {
         <section aria-labelledby="revenue-targets" className="space-y-4">
           <div>
             <p className="eyebrow">Revenue targets</p>
-            <div className="mt-2 flex flex-wrap items-center gap-3">
-              <h2 id="revenue-targets" className="section-heading flex items-center gap-2">
-                <Target className="size-5 text-primary" aria-hidden="true" />
-                Key own-tax and non-tax targets
-              </h2>
-              <BudgetSpeechPagePreview page={30} title="Revenue targets references" />
-            </div>
+            <h2 id="revenue-targets" className="section-heading mt-2 flex items-center gap-2">
+              <Target className="size-5 text-primary" aria-hidden="true" />
+              Key own-tax targets
+            </h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {revenueTargets.map((item) => (
-              <Card key={item.source} className="border-primary/20 bg-gradient-to-br from-emerald-500/10 to-teal-500/10">
+              <Card key={item.source} className="budget-print-card border-primary/20 bg-gradient-to-br from-emerald-500/10 to-teal-500/10">
                 <CardHeader className="pb-2">
-                  <CardDescription className="flex items-center justify-between gap-2">
-                    <span>{item.source}</span>
-                    <BudgetSpeechPagePreview page={item.sourcePage} title={item.source} />
-                  </CardDescription>
+                  <CardDescription>{item.source}</CardDescription>
                   <CardTitle className="text-xl">{item.target}</CardTitle>
                 </CardHeader>
               </Card>
@@ -657,15 +525,9 @@ export default function BudgetSpeechPage() {
         <section aria-labelledby="speech-priority-categories" className="space-y-4">
           <div>
             <p className="eyebrow">Budget speech categories</p>
-            <div className="mt-2 flex flex-wrap items-center gap-3">
-              <h2 id="speech-priority-categories" className="section-heading">
-                Priorities for Kisan, Mahila, Yuva and every major sector
-              </h2>
-              <BudgetSpeechPagePreview
-                page={4}
-                title="Budget speech beneficiary and sector priorities"
-              />
-            </div>
+            <h2 id="speech-priority-categories" className="section-heading mt-2">
+              Priorities for Kisan, Mahila, Yuva and every major sector
+            </h2>
             <p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">
               These cards follow the speech and the supporting analysis category by
               category, retaining the principal beneficiary groups, departmental
@@ -678,6 +540,7 @@ export default function BudgetSpeechPage() {
                 key={category.title}
                 className={cn(
                   "border-primary/20 bg-gradient-to-br",
+                  "budget-print-card",
                   category.className,
                 )}
               >
@@ -691,16 +554,12 @@ export default function BudgetSpeechPage() {
                   </CardTitle>
                   <CardDescription>{category.subtitle}</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent>
                   <ul className="list-inside list-disc space-y-1 text-sm leading-6 text-muted-foreground">
                     {category.highlights.map((highlight) => (
                       <li key={highlight}>{highlight}</li>
                     ))}
                   </ul>
-                  <BudgetSpeechPagePreview
-                    page={category.sourcePage}
-                    title={category.title}
-                  />
                 </CardContent>
               </Card>
             ))}
@@ -745,12 +604,9 @@ export default function BudgetSpeechPage() {
         <section aria-labelledby="budget-categorisation" className="space-y-4">
           <div>
             <p className="eyebrow">Categorisation cards</p>
-            <div className="mt-2 flex flex-wrap items-center gap-3">
-              <h2 id="budget-categorisation" className="section-heading">
-                Life-cycle categorisation for NFHS-linked planning
-              </h2>
-              <BudgetSpeechPagePreview page={27} title="Life-cycle budget references" />
-            </div>
+            <h2 id="budget-categorisation" className="section-heading mt-2">
+              Life-cycle categorisation for NFHS-linked planning
+            </h2>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
               From data to action: linking district indicators with schemes and budget heads.
             </p>
@@ -759,19 +615,16 @@ export default function BudgetSpeechPage() {
             {categorisationCards.map((card) => (
               <Card
                 key={card.title}
-                className={cn("border-primary/20 bg-gradient-to-br", card.className)}
+                className={cn("budget-print-card border-primary/20 bg-gradient-to-br", card.className)}
               >
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-start justify-between gap-3 text-base">
                     <span>{card.title}</span>
-                    <span className="inline-flex items-center gap-2">
-                      <card.Icon className="size-4 text-primary" aria-hidden="true" />
-                      <BudgetSpeechPagePreview page={card.sourcePage} title={card.title} />
-                    </span>
+                    <card.Icon className="size-4 text-primary" aria-hidden="true" />
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-2">
-                  <div className="space-y-1">
+                <CardContent className="grid gap-3">
+                  <div className="budget-categorisation-section space-y-1 rounded-lg border bg-background/70 p-3">
                     <p className="text-xs font-semibold tracking-wide text-primary uppercase">
                       NFHS indicator focus
                     </p>
@@ -781,13 +634,13 @@ export default function BudgetSpeechPage() {
                       ))}
                     </ul>
                   </div>
-                  <div className="space-y-1">
+                  <div className="budget-categorisation-section space-y-1 rounded-lg border bg-background/70 p-3">
                     <p className="text-xs font-semibold tracking-wide text-primary uppercase">
                       Life-cycle stage focus
                     </p>
                     <p className="text-sm text-muted-foreground">{card.lifeCycleFocus}</p>
                   </div>
-                  <div className="space-y-1">
+                  <div className="budget-categorisation-section space-y-1 rounded-lg border bg-background/70 p-3">
                     <p className="text-xs font-semibold tracking-wide text-primary uppercase">
                       Key vulnerabilities
                     </p>
@@ -797,9 +650,9 @@ export default function BudgetSpeechPage() {
                       ))}
                     </ul>
                   </div>
-                  <div className="space-y-1">
+                  <div className="budget-categorisation-section space-y-1 rounded-lg border bg-background/70 p-3">
                     <p className="text-xs font-semibold tracking-wide text-primary uppercase">
-                      Selected schemes
+                      Key Schemes
                     </p>
                     <ul className="list-inside list-disc text-sm text-muted-foreground">
                       {card.selectedSchemes.map((item) => (
@@ -807,7 +660,7 @@ export default function BudgetSpeechPage() {
                       ))}
                     </ul>
                   </div>
-                  <div className="space-y-1">
+                  <div className="budget-categorisation-section space-y-1 rounded-lg border bg-background/70 p-3">
                     <p className="text-xs font-semibold tracking-wide text-primary uppercase">
                       Budget linkage (2026-27)
                     </p>

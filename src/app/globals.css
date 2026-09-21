@@ -195,6 +195,21 @@
     padding-bottom: 22mm !important;
   }
 
+  .budget-speech-page {
+    print-color-adjust: exact;
+  }
+
+  .budget-allocation-table {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .budget-print-card,
+  .budget-categorisation-section,
+  .budget-speech-page tr {
+    break-inside: avoid;
+  }
+
   .district-print-footer {
     display: flex !important;
     position: fixed;
