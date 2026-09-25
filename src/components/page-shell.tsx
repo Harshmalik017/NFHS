@@ -12,7 +12,7 @@ export function PageShell({
   children,
 }: {
   eyebrow: string;
-  title: string;
+  title?: string;
   description?: string;
   actions?: ReactNode;
   headerExtra?: ReactNode;
@@ -38,8 +38,14 @@ export function PageShell({
           }`}
         >
           <p className="eyebrow">{eyebrow}</p>
-          <h1 className="text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
-            {title}
+          <h1
+            className={
+              title
+                ? "text-3xl font-semibold tracking-tight text-balance sm:text-5xl"
+                : "sr-only"
+            }
+          >
+            {title ?? eyebrow}
           </h1>
           {description ? (
             <p

@@ -8,7 +8,6 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -148,10 +147,10 @@ export function ComparisonView({
     <div className="grid gap-6 xl:grid-cols-[320px_1fr]">
       <Card className="self-start xl:sticky xl:top-24">
         <CardHeader>
-          <CardTitle>Select districts</CardTitle>
-          <CardDescription>
-            Select any number of districts. {selected.length} selected.
-          </CardDescription>
+          <CardTitle>One or more districts can be selected</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            {selected.length} selected.
+          </p>
         </CardHeader>
         <CardContent className="flex gap-2 pb-2">
           <Button type="button" size="sm" variant="outline" onClick={selectAll}>
@@ -191,7 +190,7 @@ export function ComparisonView({
               htmlFor="comparison-indicator"
               className="grid flex-1 gap-1 text-sm font-medium"
             >
-              Choose Indicator
+              Select Indicator
               <select
                 id="comparison-indicator"
                 value={indicator.id}
@@ -213,7 +212,7 @@ export function ComparisonView({
                   variant={sortOrder === "desc" ? "default" : "outline"}
                   onClick={() => setSortOrder("desc")}
                 >
-                  Top to low
+                  High to Low
                 </Button>
                 <Button
                   type="button"
@@ -221,7 +220,7 @@ export function ComparisonView({
                   variant={sortOrder === "asc" ? "default" : "outline"}
                   onClick={() => setSortOrder("asc")}
                 >
-                  Low to top
+                  Low to High
                 </Button>
               </div>
               <Button type="button" onClick={downloadCsv}>

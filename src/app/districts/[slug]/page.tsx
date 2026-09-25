@@ -104,13 +104,12 @@ export default async function DistrictPage({ params }: DistrictPageProps) {
       alignHeaderTop
       headerExtra={
         <section aria-labelledby="sample-size" className="pt-2">
-          <p className="eyebrow">Survey sample</p>
           <h2
             id="sample-size"
-            className="mt-2 flex items-center gap-2 text-3xl font-semibold tracking-tight"
+            className="flex items-center gap-2 text-3xl font-semibold tracking-tight"
           >
             <Users className="size-6 text-primary" aria-hidden="true" />
-            Survey sample as per NHFS-6 Official Records
+            Sample Size (NFHS-6)
           </h2>
           <div className="mt-3 grid gap-2 sm:grid-cols-3">
             <div className="rounded-lg border bg-card px-3 py-2.5">

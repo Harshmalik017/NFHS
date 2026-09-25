@@ -43,7 +43,7 @@ export default function HomePage() {
   return (
     <PageShell
       eyebrow="NFHS-6 · 2023-24"
-      title="Uttar Pradesh health data, district by district"
+      title="Uttar Pradesh NFHS-6 Performance"
       description="Explore 93 health, nutrition, household, and demographic indicators across all 75 districts, with NFHS-5 comparisons."
     >
       <div className="space-y-12">
@@ -81,7 +81,7 @@ export default function HomePage() {
               className="section-heading mt-2 flex items-center gap-2"
             >
               <MapIcon className="size-5 text-primary" aria-hidden="true" />
-              See how one indicator varies across Uttar Pradesh
+              Performance across districts
             </h2>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
               Select any district indicator to open district profile.

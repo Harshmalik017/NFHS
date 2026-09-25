@@ -42,9 +42,7 @@ const comparisonValues = districts.flatMap((district) =>
 export default function ComparePage() {
   return (
     <PageShell
-      eyebrow="District comparison"
-      title="Compare district estimates side by side"
-      description="Select one or many Uttar Pradesh districts, then choose from all 93 district indicators to compare NFHS-6 with NFHS-5."
+      eyebrow="District Performance"
     >
       <ComparisonView
         districts={comparisonDistricts}

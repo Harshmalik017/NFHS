@@ -462,7 +462,6 @@ export default function BudgetSpeechPage() {
       className="budget-speech-print-root"
       eyebrow="Uttar Pradesh Budget Speech 2026-27"
       title="Budget highlights with NFHS-6 policy context"
-      description="A complete structured summary of the overall budget size, economic highlights, sector-wise allocation changes, revenue targets, and NFHS-linked planning context."
       actions={<BudgetSpeechDownloads data={budgetSpeechPdfData} />}
       fullWidthHeader
       headerExtra={
@@ -477,9 +476,8 @@ export default function BudgetSpeechPage() {
         <section aria-labelledby="overall-budget-size" className="space-y-4">
           <div>
             <p className="eyebrow">Overall budget size</p>
-            <h2 id="overall-budget-size" className="section-heading mt-2 flex items-center gap-2">
-              <Landmark className="size-5 text-primary" aria-hidden="true" />
-              Headline fiscal indicators
+            <h2 id="overall-budget-size" className="sr-only">
+              Overall budget size
             </h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -569,7 +567,7 @@ export default function BudgetSpeechPage() {
           <div>
             <p className="eyebrow">Budget speech categories</p>
             <h2 id="speech-priority-categories" className="section-heading mt-2">
-              Priorities for Kisan, Mahila, Yuva and every major sector
+              Priorities for Kisan, Mahila, Yuva and other major sectors
             </h2>
             <p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">
               These cards follow the speech and the supporting analysis category by

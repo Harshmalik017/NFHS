@@ -155,10 +155,6 @@ export function createBudgetSpeechDocument(
       style: "title",
     },
     {
-      text: "A complete structured summary of the overall budget size, economic highlights, sector-wise allocation changes, revenue targets, and NFHS-linked planning context.",
-      style: "description",
-    },
-    {
       text: "Budget 2026-27  |  UP macro-fiscal snapshot  |  Planning reference",
       style: "metadata",
     },
@@ -233,7 +229,7 @@ export function createBudgetSpeechDocument(
     })),
     createSectionTitle("Budget speech categories"),
     {
-      text: "Priorities for Kisan, Mahila, Yuva and every major sector",
+      text: "Priorities for Kisan, Mahila, Yuva and other major sectors",
       bold: true,
       fontSize: 12,
       color: "#111827",

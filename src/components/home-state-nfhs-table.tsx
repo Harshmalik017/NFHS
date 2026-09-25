@@ -27,13 +27,9 @@ export function HomeStateNfhsTable({ rows }: { rows: StateNfhsRow[] }) {
     <section aria-labelledby="state-nfhs-table" className="space-y-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="eyebrow">State comparison</p>
-          <h2 id="state-nfhs-table" className="section-heading mt-2">
-            Uttar Pradesh NFHS-6 vs NFHS-5
+          <h2 id="state-nfhs-table" className="section-heading">
+            State-level Progress
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            State-level totals for all indicators from the static NFHS dataset.
-          </p>
         </div>
         <a
           href="/api/up-state-nfhs-5-6-excel"
