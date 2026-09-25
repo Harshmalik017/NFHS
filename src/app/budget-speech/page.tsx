@@ -462,6 +462,7 @@ export default function BudgetSpeechPage() {
       className="budget-speech-print-root"
       eyebrow="Uttar Pradesh Budget Speech 2026-27"
       title="Budget highlights with NFHS-6 policy context"
+      description="Summary - budget size, economic highlights, sector wise allocation and changes, revenue targets and NFHS linked planning context"
       actions={<BudgetSpeechDownloads data={budgetSpeechPdfData} />}
       fullWidthHeader
       headerExtra={

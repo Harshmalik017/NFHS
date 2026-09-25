@@ -75,17 +75,13 @@ export default function HomePage() {
 
         <section aria-labelledby="district-map" className="space-y-5">
           <div>
-            <p className="eyebrow">District map</p>
             <h2
               id="district-map"
-              className="section-heading mt-2 flex items-center gap-2"
+              className="section-heading flex items-center gap-2"
             >
               <MapIcon className="size-5 text-primary" aria-hidden="true" />
               Performance across districts
             </h2>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-              Select any district indicator to open district profile.
-            </p>
           </div>
           <DistrictMap indicators={mapIndicators} districts={mapDistricts} />
         </section>

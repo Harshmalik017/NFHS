@@ -155,6 +155,10 @@ export function createBudgetSpeechDocument(
       style: "title",
     },
     {
+      text: "Summary - budget size, economic highlights, sector wise allocation and changes, revenue targets and NFHS linked planning context",
+      style: "description",
+    },
+    {
       text: "Budget 2026-27  |  UP macro-fiscal snapshot  |  Planning reference",
       style: "metadata",
     },

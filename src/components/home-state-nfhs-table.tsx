@@ -27,8 +27,9 @@ export function HomeStateNfhsTable({ rows }: { rows: StateNfhsRow[] }) {
     <section aria-labelledby="state-nfhs-table" className="space-y-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h2 id="state-nfhs-table" className="section-heading">
-            State-level Progress
+          <p className="eyebrow">State-level Progress</p>
+          <h2 id="state-nfhs-table" className="section-heading mt-2">
+            Uttar Pradesh NFHS-6 vs NFHS-5
           </h2>
         </div>
         <a
