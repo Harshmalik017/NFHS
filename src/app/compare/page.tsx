@@ -42,7 +42,6 @@ const comparisonValues = districts.flatMap((district) =>
 export default function ComparePage() {
   return (
     <PageShell
-      eyebrow="District comparison"
       title="District Performance"
     >
       <ComparisonView

@@ -11,7 +11,7 @@ export function PageShell({
   className = "",
   children,
 }: {
-  eyebrow: string;
+  eyebrow?: string;
   title?: string;
   description?: string;
   actions?: ReactNode;
@@ -37,7 +37,7 @@ export function PageShell({
             fullWidthHeader ? "max-w-none" : "max-w-3xl"
           }`}
         >
-          <p className="eyebrow">{eyebrow}</p>
+          {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
           <h1
             className={
               title
@@ -45,7 +45,7 @@ export function PageShell({
                 : "sr-only"
             }
           >
-            {title ?? eyebrow}
+            {title ?? eyebrow ?? "Page"}
           </h1>
           {description ? (
             <p

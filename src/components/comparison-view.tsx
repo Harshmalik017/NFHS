@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { Download, Eye } from "lucide-react";
+import { ChevronDown, Download, Eye } from "lucide-react";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -167,8 +167,11 @@ export function ComparisonView({
     <div className="grid gap-6 xl:grid-cols-[320px_1fr]">
       <details className="rounded-xl border bg-card xl:hidden">
         <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4">
-          <span className="font-semibold">One or more districts can be selected</span>
-          <span className="text-sm text-muted-foreground">{selected.length} selected</span>
+          <span className="font-semibold">Select District</span>
+          <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+            {selected.length} selected
+            <ChevronDown className="size-4" aria-hidden="true" />
+          </span>
         </summary>
         <div className="border-t">
           <div className="flex gap-2 p-4 pb-2">
