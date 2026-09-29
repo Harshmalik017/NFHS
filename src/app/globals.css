@@ -188,6 +188,7 @@
 @media print {
   @page {
     margin: 14mm 12mm 18mm;
+    counter-increment: page;
   }
 
   @page budget-speech-landscape {
@@ -245,12 +246,23 @@
     border: 1px solid #cbd5e1;
   }
 
+  .district-indicator-table [data-slot="table-header"] {
+    background: var(--primary) !important;
+    color: #ffffff !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
   .district-indicator-table [data-slot="table-head"],
   .district-indicator-table [data-slot="table-cell"] {
     white-space: normal !important;
     word-break: break-word;
     padding: 4px 6px !important;
     border: 1px solid #cbd5e1 !important;
+  }
+
+  .district-indicator-table [data-slot="table-head"] {
+    color: #ffffff !important;
   }
 
   .district-indicator-table [data-slot="table-head"]:nth-child(1),
@@ -325,8 +337,16 @@
     color: #374151;
   }
 
+  body {
+    counter-reset: district-print-page;
+  }
+
+  .district-print-page {
+    counter-increment: district-print-page;
+  }
+
   .district-print-page::after {
-    content: "Page " counter(page) " of " counter(pages);
+    content: "Page " counter(district-print-page);
   }
 
   .district-category-section {
@@ -334,6 +354,14 @@
   }
 
   .district-category-header {
+    break-after: avoid;
+  }
+
+  .district-indicator-results-header {
+    break-after: avoid;
+  }
+
+  .district-indicator-results-title {
     break-after: avoid;
   }
 

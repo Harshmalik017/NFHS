@@ -4,6 +4,7 @@ import {
   Activity,
   AlertTriangle,
   Apple,
+  ArrowLeft,
   Baby,
   CalendarDays,
   ChartColumnBig,
@@ -21,6 +22,7 @@ import {
   Venus,
   type LucideIcon,
 } from "lucide-react";
+import Link from "next/link";
 
 import { DistrictMiniMap } from "@/components/district-mini-map";
 import { DistrictProfileDownloads } from "@/components/district-profile-downloads";
@@ -28,6 +30,7 @@ import { DistrictPrintFooter } from "@/components/district-print-footer";
 import { IndicatorTable } from "@/components/indicator-table";
 import { PageShell } from "@/components/page-shell";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   districts,
   getDistrict,
@@ -142,12 +145,16 @@ export default async function DistrictPage({ params }: DistrictPageProps) {
     >
       <div className="space-y-10">
         <section aria-labelledby="indicator-results" className="space-y-10">
-          <div>
+          <div className="district-indicator-results-header space-y-4">
+            <Button variant="outline" size="sm" render={<Link href="/districts" />}>
+              <ArrowLeft className="size-4" aria-hidden="true" />
+              Back to All Districts
+            </Button>
             <div>
               <p className="eyebrow">District fact sheet</p>
               <h2
                 id="indicator-results"
-                className="section-heading mt-2 flex items-center gap-2"
+                className="district-indicator-results-title section-heading mt-2 flex items-center gap-2"
               >
                 <ChartColumnBig className="size-5 text-primary" aria-hidden="true" />
                 All {rows.length} indicators
