@@ -44,6 +44,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
