@@ -34,10 +34,10 @@ export function SiteFooter() {
           className="flex flex-wrap content-start justify-start gap-x-5 gap-y-3 text-sm lg:justify-end lg:text-right"
         >
           <Link
-            href="/districts"
+            href="/compare"
             className={cn(buttonVariants({ size: "sm" }))}
           >
-            Sample Size Explorer
+            District Performance
             <ArrowRight aria-hidden="true" />
           </Link>
           <a

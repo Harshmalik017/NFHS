@@ -146,9 +146,9 @@ export default async function DistrictPage({ params }: DistrictPageProps) {
       <div className="space-y-10">
         <section aria-labelledby="indicator-results" className="space-y-10">
           <div className="district-indicator-results-header space-y-4">
-            <Button variant="outline" size="sm" render={<Link href="/districts" />}>
+            <Button size="sm" render={<Link href="/compare" />}>
               <ArrowLeft className="size-4" aria-hidden="true" />
-              Back to All Districts
+              Back to Compare Districts
             </Button>
             <div>
               <p className="eyebrow">District fact sheet</p>
