@@ -230,7 +230,6 @@
 
   .district-indicator-table {
     overflow: visible !important;
-    break-inside: avoid;
   }
 
   .district-indicator-table [data-slot="table-container"] {
@@ -242,6 +241,8 @@
     min-width: 0 !important;
     table-layout: fixed;
     font-size: 10px;
+    border-collapse: collapse;
+    border: 1px solid #cbd5e1;
   }
 
   .district-indicator-table [data-slot="table-head"],
@@ -249,6 +250,7 @@
     white-space: normal !important;
     word-break: break-word;
     padding: 4px 6px !important;
+    border: 1px solid #cbd5e1 !important;
   }
 
   .district-indicator-table [data-slot="table-head"]:nth-child(1),
@@ -324,13 +326,25 @@
   }
 
   .district-print-page::after {
-    content: "Page " counter(page);
+    content: "Page " counter(page) " of " counter(pages);
+  }
+
+  .district-category-section {
+    break-inside: auto !important;
+  }
+
+  .district-category-header {
+    break-after: avoid;
   }
 
   button,
   [role="button"],
   select,
   input {
+    display: none !important;
+  }
+
+  a[href="#main-content"] {
     display: none !important;
   }
 }

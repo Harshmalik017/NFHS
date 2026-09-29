@@ -163,9 +163,9 @@ export default async function DistrictPage({ params }: DistrictPageProps) {
                 key={category.id}
                 id={category.id}
                 aria-labelledby={`${category.id}-title`}
-                className="scroll-mt-24 space-y-4"
+                className="district-category-section scroll-mt-24 space-y-4"
               >
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+                <div className="district-category-header flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
                   <h3
                     id={`${category.id}-title`}
                     className="flex items-center gap-2 text-xl font-semibold tracking-tight"
@@ -183,7 +183,7 @@ export default async function DistrictPage({ params }: DistrictPageProps) {
           })}
         </section>
       </div>
-      <DistrictPrintFooter />
+      <DistrictPrintFooter districtName={district.name} />
     </PageShell>
   );
 }
