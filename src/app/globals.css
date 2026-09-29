@@ -198,6 +198,11 @@
   body {
     background: #fff !important;
     color: #111827 !important;
+    scrollbar-width: none !important;
+  }
+
+  *::-webkit-scrollbar {
+    display: none !important;
   }
 
   .page-shell {
@@ -221,6 +226,43 @@
   .district-factsheet-map svg {
     width: 100% !important;
     height: auto !important;
+  }
+
+  .district-indicator-table {
+    overflow: visible !important;
+    break-inside: avoid;
+  }
+
+  .district-indicator-table [data-slot="table-container"] {
+    overflow: visible !important;
+  }
+
+  .district-indicator-table [data-slot="table"] {
+    width: 100% !important;
+    min-width: 0 !important;
+    table-layout: fixed;
+    font-size: 10px;
+  }
+
+  .district-indicator-table [data-slot="table-head"],
+  .district-indicator-table [data-slot="table-cell"] {
+    white-space: normal !important;
+    word-break: break-word;
+    padding: 4px 6px !important;
+  }
+
+  .district-indicator-table [data-slot="table-head"]:nth-child(1),
+  .district-indicator-table [data-slot="table-cell"]:nth-child(1) {
+    width: 55% !important;
+  }
+
+  .district-indicator-table [data-slot="table-head"]:nth-child(2),
+  .district-indicator-table [data-slot="table-cell"]:nth-child(2),
+  .district-indicator-table [data-slot="table-head"]:nth-child(3),
+  .district-indicator-table [data-slot="table-cell"]:nth-child(3),
+  .district-indicator-table [data-slot="table-head"]:nth-child(4),
+  .district-indicator-table [data-slot="table-cell"]:nth-child(4) {
+    width: 15% !important;
   }
 
   .page-shell-content {
