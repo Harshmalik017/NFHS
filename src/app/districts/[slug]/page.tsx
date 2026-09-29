@@ -4,7 +4,6 @@ import {
   Activity,
   AlertTriangle,
   Apple,
-  ArrowLeft,
   Baby,
   CalendarDays,
   ChartColumnBig,
@@ -22,7 +21,6 @@ import {
   Venus,
   type LucideIcon,
 } from "lucide-react";
-import Link from "next/link";
 
 import { DistrictMiniMap } from "@/components/district-mini-map";
 import { DistrictProfileDownloads } from "@/components/district-profile-downloads";
@@ -30,7 +28,6 @@ import { DistrictPrintFooter } from "@/components/district-print-footer";
 import { IndicatorTable } from "@/components/indicator-table";
 import { PageShell } from "@/components/page-shell";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   districts,
   getDistrict,
@@ -138,18 +135,19 @@ export default async function DistrictPage({ params }: DistrictPageProps) {
       }
       actions={
         <div className="district-factsheet-actions flex w-full max-w-[360px] flex-col gap-3 print:mt-4 print:max-w-none">
-          <DistrictProfileDownloads districtName={district.name} rows={rows} />
+          <DistrictProfileDownloads
+            districtName={district.name}
+            rows={rows}
+            backHref="/compare"
+            backLabel="Back to All Districts"
+          />
           <DistrictMiniMap districtName={district.name} />
         </div>
       }
     >
       <div className="space-y-10">
         <section aria-labelledby="indicator-results" className="space-y-10">
-          <div className="district-indicator-results-header space-y-4">
-            <Button size="sm" render={<Link href="/compare" />}>
-              <ArrowLeft className="size-4" aria-hidden="true" />
-              Back to Compare Districts
-            </Button>
+          <div className="district-indicator-results-header">
             <div>
               <p className="eyebrow">District fact sheet</p>
               <h2

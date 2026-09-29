@@ -1,6 +1,7 @@
 "use client";
 
-import { Download } from "lucide-react";
+import { ArrowLeft, Download } from "lucide-react";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import type { DistrictIndicatorRow } from "@/lib/nfhs/types";
@@ -15,9 +16,13 @@ function slugify(value: string) {
 export function DistrictProfileDownloads({
   districtName,
   rows,
+  backHref,
+  backLabel,
 }: {
   districtName: string;
   rows: DistrictIndicatorRow[];
+  backHref?: string;
+  backLabel?: string;
 }) {
   function downloadCsv() {
     const header = [
@@ -61,6 +66,12 @@ export function DistrictProfileDownloads({
 
   return (
     <div className="flex flex-nowrap gap-2 print:hidden">
+      {backHref ? (
+        <Button size="sm" className="whitespace-nowrap" render={<Link href={backHref} />}>
+          <ArrowLeft className="size-4" aria-hidden="true" />
+          {backLabel ?? "Back"}
+        </Button>
+      ) : null}
       <Button type="button" size="sm" className="whitespace-nowrap" onClick={downloadCsv}>
         <Download className="size-4" aria-hidden="true" />
         Download CSV
