@@ -188,7 +188,6 @@
 @media print {
   @page {
     margin: 14mm 12mm 18mm;
-    counter-increment: page;
   }
 
   @page budget-speech-landscape {
@@ -337,16 +336,8 @@
     color: #374151;
   }
 
-  body {
-    counter-reset: district-print-page;
-  }
-
-  .district-print-page {
-    counter-increment: district-print-page;
-  }
-
   .district-print-page::after {
-    content: "Page " counter(district-print-page);
+    content: "Page " counter(page);
   }
 
   .district-category-section {
