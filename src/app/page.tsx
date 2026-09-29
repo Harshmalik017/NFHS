@@ -45,6 +45,7 @@ export default function HomePage() {
       eyebrow="NFHS-6 · 2023-24"
       title="Uttar Pradesh NFHS-6 Performance"
       description="Explore 93 health, nutrition, household, and demographic indicators across all 75 districts, with NFHS-5 comparisons."
+      fullWidthHeader
     >
       <div className="space-y-12">
         <HomeImageCarousel />

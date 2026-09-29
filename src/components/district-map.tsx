@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { Feature, FeatureCollection } from "geojson";
+import type { Feature, FeatureCollection, Geometry, Position } from "geojson";
 
 import districtGeometry from "@/data/nfhs/district-geometry.json";
 import {
@@ -38,6 +38,32 @@ function colorFor(value: number | null, min: number, max: number) {
     Math.floor(((value - min) / (max - min)) * scale.length),
   );
   return scale[index];
+}
+
+function geometryPoints(geometry: Geometry): Position[] {
+  if (geometry.type === "Polygon") {
+    return geometry.coordinates.flat();
+  }
+  if (geometry.type === "MultiPolygon") {
+    return geometry.coordinates.flat(2);
+  }
+  return [];
+}
+
+function geometryLabelPoint(
+  geometry: Geometry,
+  project: (point: [number, number]) => [number, number] | null,
+) {
+  const points = geometryPoints(geometry);
+  if (!points.length) return null;
+  let lonSum = 0;
+  let latSum = 0;
+  for (const [lon, lat] of points) {
+    lonSum += lon;
+    latSum += lat;
+  }
+  const center: [number, number] = [lonSum / points.length, latSum / points.length];
+  return project(center);
 }
 
 export function DistrictMap({
@@ -85,6 +111,7 @@ export function DistrictMap({
       district,
       value: observation?.value ?? null,
       d: geometryToPath(feature.geometry, projection),
+      labelPoint: geometryLabelPoint(feature.geometry, projection),
     };
   });
 
@@ -125,52 +152,68 @@ export function DistrictMap({
             className="h-auto w-full"
           >
             {features.map((feature) => (
-              <a
-                key={feature.key}
-                href={feature.district ? `/districts/${feature.district.id}` : undefined}
-                aria-label={
-                  feature.district
-                    ? `${feature.district.name}: ${
-                        feature.value === null
-                          ? "not available"
-                          : `${feature.value.toFixed(1)} percent`
-                      }`
-                    : feature.sourceName
-                }
-                onMouseEnter={(event) => {
-                  const svg = event.currentTarget.closest("svg");
-                  const rect = svg?.getBoundingClientRect();
-                  if (!rect) return;
-                  setHoverState({
-                    districtId: feature.district?.id ?? null,
-                    x: event.clientX - rect.left + 12,
-                    y: event.clientY - rect.top + 12,
-                  });
-                }}
-                onMouseMove={(event) => {
-                  const svg = event.currentTarget.closest("svg");
-                  const rect = svg?.getBoundingClientRect();
-                  if (!rect) return;
-                  setHoverState((current) => ({
-                    districtId: feature.district?.id ?? current?.districtId ?? null,
-                    x: event.clientX - rect.left + 12,
-                    y: event.clientY - rect.top + 12,
-                  }));
-                }}
-                onMouseLeave={() => setHoverState(null)}
-                onFocus={() =>
-                  setHoverState({ districtId: feature.district?.id ?? null, x: 16, y: 16 })
-                }
-                onBlur={() => setHoverState(null)}
-              >
-                <path
-                  d={feature.d}
-                  fill={colorFor(feature.value, min, max)}
-                  stroke="var(--card)"
-                  strokeWidth={1}
-                  className="transition-opacity duration-150 hover:opacity-80 focus:opacity-80 focus:outline-none"
-                />
-              </a>
+              <g key={feature.key}>
+                <a
+                  href={feature.district ? `/districts/${feature.district.id}` : undefined}
+                  aria-label={
+                    feature.district
+                      ? `${feature.district.name}: ${
+                          feature.value === null
+                            ? "not available"
+                            : `${feature.value.toFixed(1)} percent`
+                        }`
+                      : feature.sourceName
+                  }
+                  onMouseEnter={(event) => {
+                    const svg = event.currentTarget.closest("svg");
+                    const rect = svg?.getBoundingClientRect();
+                    if (!rect) return;
+                    setHoverState({
+                      districtId: feature.district?.id ?? null,
+                      x: event.clientX - rect.left + 12,
+                      y: event.clientY - rect.top + 12,
+                    });
+                  }}
+                  onMouseMove={(event) => {
+                    const svg = event.currentTarget.closest("svg");
+                    const rect = svg?.getBoundingClientRect();
+                    if (!rect) return;
+                    setHoverState((current) => ({
+                      districtId: feature.district?.id ?? current?.districtId ?? null,
+                      x: event.clientX - rect.left + 12,
+                      y: event.clientY - rect.top + 12,
+                    }));
+                  }}
+                  onMouseLeave={() => setHoverState(null)}
+                  onFocus={() =>
+                    setHoverState({
+                      districtId: feature.district?.id ?? null,
+                      x: 16,
+                      y: 16,
+                    })
+                  }
+                  onBlur={() => setHoverState(null)}
+                >
+                  <path
+                    d={feature.d}
+                    fill={colorFor(feature.value, min, max)}
+                    stroke="var(--card)"
+                    strokeWidth={1}
+                    className="transition-opacity duration-150 hover:opacity-80 focus:opacity-80 focus:outline-none"
+                  />
+                </a>
+                {feature.labelPoint ? (
+                  <text
+                    x={feature.labelPoint[0]}
+                    y={feature.labelPoint[1]}
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    className="pointer-events-none fill-foreground/80 text-[2.8px] font-medium sm:text-[4.2px] lg:text-[4.8px]"
+                  >
+                    {feature.district?.name ?? feature.sourceName}
+                  </text>
+                ) : null}
+              </g>
             ))}
           </svg>
 
