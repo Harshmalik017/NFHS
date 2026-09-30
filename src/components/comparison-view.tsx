@@ -294,26 +294,26 @@ export function ComparisonView({
                           unit={indicator.unit}
                         />
                       </TableCell>
-                        <TableCell className="text-right">
-                          <Link
-                            href={`/districts/${district.slug}`}
-                            className={cn(
-                              buttonVariants({ size: "sm" }),
-                              "inline-flex",
-                            )}
-                          >
-                            <Eye className="size-4" aria-hidden="true" />
-                            View factsheet
-                          </Link>
-                        </TableCell>
-                      </TableRow>
-                    ))
-                  ) : (
-                  <TableRow>
-                      <TableCell colSpan={4} className="h-28 text-center">
-                        Select at least one district to compare.
+                      <TableCell className="text-right">
+                        <Link
+                          href={`/districts/${district.slug}`}
+                          className={cn(
+                            buttonVariants({ size: "sm" }),
+                            "inline-flex",
+                          )}
+                        >
+                          <Eye className="size-4" aria-hidden="true" />
+                          View factsheet
+                        </Link>
                       </TableCell>
                     </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={4} className="h-28 text-center">
+                      Select at least one district to compare.
+                    </TableCell>
+                  </TableRow>
                 )}
               </TableBody>
             </Table>

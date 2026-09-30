@@ -55,6 +55,7 @@ The source compendium includes:
 
 - NFHS-6 (2023-24) and NFHS-5 (2019-21);
 - Uttar Pradesh state indicators;
+- state-level urban, rural, and total splits for both NFHS rounds;
 - all 75 Uttar Pradesh district fact sheets;
 - 93 indicators on each district fact sheet;
 - state and district sample sizes for households, women, and men.

@@ -38,7 +38,11 @@ export interface NfhsStateIndicator {
     rural: NfhsValue;
     total: NfhsValue;
   };
-  nfhs5: { total: NfhsValue };
+  nfhs5: {
+    urban: NfhsValue;
+    rural: NfhsValue;
+    total: NfhsValue;
+  };
 }
 
 export interface NfhsFootnotePage {

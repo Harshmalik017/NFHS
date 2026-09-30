@@ -34,10 +34,26 @@ export default function HomePage() {
     id: indicator.id,
     label:
       stateIndicatorLabels.get(indicator.id) ?? `Indicator ${indicator.id}`,
-    nfhs6: indicator.nfhs6.total.value,
-    nfhs5: indicator.nfhs5.total.value,
-    nfhs6Status: toObservationStatus(indicator.nfhs6.total.status),
-    nfhs5Status: toObservationStatus(indicator.nfhs5.total.status),
+    nfhs6: {
+      overall: indicator.nfhs6.total.value,
+      urban: indicator.nfhs6.urban.value,
+      rural: indicator.nfhs6.rural.value,
+    },
+    nfhs5: {
+      overall: indicator.nfhs5.total.value,
+      urban: indicator.nfhs5.urban.value,
+      rural: indicator.nfhs5.rural.value,
+    },
+    nfhs6Status: {
+      overall: toObservationStatus(indicator.nfhs6.total.status),
+      urban: toObservationStatus(indicator.nfhs6.urban.status),
+      rural: toObservationStatus(indicator.nfhs6.rural.status),
+    },
+    nfhs5Status: {
+      overall: toObservationStatus(indicator.nfhs5.total.status),
+      urban: toObservationStatus(indicator.nfhs5.urban.status),
+      rural: toObservationStatus(indicator.nfhs5.rural.status),
+    },
   }));
 
   return (

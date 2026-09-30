@@ -1,0 +1,560 @@
+[
+  {
+    "indicator": "Female population age 6 years and above who ever attended school (%)",
+    "urban": 76.2,
+    "rural": 64.6,
+    "total": 67.4
+  },
+  {
+    "indicator": "Population below age 15 years (%)",
+    "urban": 26.7,
+    "rural": 32.4,
+    "total": 31
+  },
+  {
+    "indicator": "Sex ratio of the total population (females per 1,000 males)",
+    "urban": 961,
+    "rural": 1036,
+    "total": 1017
+  },
+  {
+    "indicator": "Sex ratio at birth for children born in the last five years (females per 1,000 males)",
+    "urban": 933,
+    "rural": 943,
+    "total": 941
+  },
+  {
+    "indicator": "Children under age 5 years whose birth was registered with the civil authority (%)",
+    "urban": 84.4,
+    "rural": 78.2,
+    "total": 79.5
+  },
+  {
+    "indicator": "Deaths in the last 3 years registered with the civil authority (%)",
+    "urban": 61.8,
+    "rural": 43.2,
+    "total": 47.3
+  },
+  {
+    "indicator": "Population living in households with electricity (%)",
+    "urban": 97.6,
+    "rural": 88.9,
+    "total": 91
+  },
+  {
+    "indicator": "Population living in households with an improved drinking-water source (%)",
+    "urban": 99.4,
+    "rural": 99.1,
+    "total": 99.2
+  },
+  {
+    "indicator": "Population living in households that use an improved sanitation facility (%)",
+    "urban": 80.9,
+    "rural": 64.8,
+    "total": 68.8
+  },
+  {
+    "indicator": "Households using clean fuel for cooking (%)",
+    "urban": 88.3,
+    "rural": 36.2,
+    "total": 49.5
+  },
+  {
+    "indicator": "Households using iodized salt (%)",
+    "urban": 97,
+    "rural": 90.6,
+    "total": 92.3
+  },
+  {
+    "indicator": "Households with any usual member covered under a health insurance/financing scheme (%)",
+    "urban": 16.8,
+    "rural": 15.5,
+    "total": 15.9
+  },
+  {
+    "indicator": "Children age 5 years who attended pre-primary school during the school year 2019-20 (%)",
+    "urban": 11.9,
+    "rural": 8.6,
+    "total": 9.3
+  },
+  {
+    "indicator": "Women who are literate (%)",
+    "urban": 77.2,
+    "rural": 62.4,
+    "total": 66.1
+  },
+  {
+    "indicator": "Men who are literate (%)",
+    "urban": 84.1,
+    "rural": 81.2,
+    "total": 82
+  },
+  {
+    "indicator": "Women with 10 or more years of schooling (%)",
+    "urban": 51.9,
+    "rural": 35,
+    "total": 39.3
+  },
+  {
+    "indicator": "Men with 10 or more years of schooling (%)",
+    "urban": 56.8,
+    "rural": 45.6,
+    "total": 48.6
+  },
+  {
+    "indicator": "Women who have ever used the internet (%)",
+    "urban": 50.2,
+    "rural": 24.5,
+    "total": 30.6
+  },
+  {
+    "indicator": "Men who have ever used the internet (%)",
+    "urban": 72.4,
+    "rural": 54.2,
+    "total": 59.1
+  },
+  {
+    "indicator": "Women age 20-24 years married before age 18 years (%)",
+    "urban": 9.6,
+    "rural": 17.9,
+    "total": 15.8
+  },
+  {
+    "indicator": "Men age 25-29 years married before age 21 years (%)",
+    "urban": 17.1,
+    "rural": 25.4,
+    "total": 23
+  },
+  {
+    "indicator": "Total fertility rate (children per woman)",
+    "urban": 1.9,
+    "rural": 2.5,
+    "total": 2.4
+  },
+  {
+    "indicator": "Women age 15-19 years who were already mothers or pregnant at the time of the survey (%)",
+    "urban": 1.5,
+    "rural": 3.3,
+    "total": 2.9
+  },
+  {
+    "indicator": "Adolescent fertility rate for women age 15-19 years",
+    "urban": 14,
+    "rural": 24,
+    "total": 22
+  },
+  {
+    "indicator": "Neonatal mortality rate (NNMR)",
+    "urban": 27.7,
+    "rural": 37.8,
+    "total": 35.7
+  },
+  {
+    "indicator": "Infant mortality rate (IMR)",
+    "urban": 42,
+    "rural": 52.6,
+    "total": 50.4
+  },
+  {
+    "indicator": "Under-five mortality rate (U5MR)",
+    "urban": 49.7,
+    "rural": 62.5,
+    "total": 59.8
+  },
+  {
+    "indicator": "Any method (%)",
+    "urban": 67.6,
+    "rural": 60.8,
+    "total": 62.4
+  },
+  {
+    "indicator": "Any modern method (%)",
+    "urban": 48.6,
+    "rural": 43.2,
+    "total": 44.5
+  },
+  {
+    "indicator": "Female sterilization (%)",
+    "urban": 13.5,
+    "rural": 18,
+    "total": 16.9
+  },
+  {
+    "indicator": "Male sterilization (%)",
+    "urban": 0.1,
+    "rural": 0.1,
+    "total": 0.1
+  },
+  {
+    "indicator": "IUD/PPIUD (%)",
+    "urban": 2,
+    "rural": 1.3,
+    "total": 1.5
+  },
+  {
+    "indicator": "Pill (%)",
+    "urban": 4,
+    "rural": 4.5,
+    "total": 4.4
+  },
+  {
+    "indicator": "Condom (%)",
+    "urban": 27.1,
+    "rural": 16.6,
+    "total": 19.1
+  },
+  {
+    "indicator": "Injectables (%)",
+    "urban": 0.9,
+    "rural": 1.2,
+    "total": 1.2
+  },
+  {
+    "indicator": "Total unmet need (%)",
+    "urban": 9.2,
+    "rural": 14,
+    "total": 12.9
+  },
+  {
+    "indicator": "Unmet need for spacing (%)",
+    "urban": 3.5,
+    "rural": 5.2,
+    "total": 4.8
+  },
+  {
+    "indicator": "Health worker ever talked to female non-users about family planning (%)",
+    "urban": 23.8,
+    "rural": 25.6,
+    "total": 25.1
+  },
+  {
+    "indicator": "Current users ever told about side effects of current method (%)",
+    "urban": 71.7,
+    "rural": 70.4,
+    "total": 70.6
+  },
+  {
+    "indicator": "Mothers who had an antenatal check-up in the first trimester (%)",
+    "urban": 70.8,
+    "rural": 60.2,
+    "total": 62.5
+  },
+  {
+    "indicator": "Mothers who had at least 4 antenatal care visits (%)",
+    "urban": 52.3,
+    "rural": 39.6,
+    "total": 42.4
+  },
+  {
+    "indicator": "Mothers whose last birth was protected against neonatal tetanus (%)",
+    "urban": 93.7,
+    "rural": 91.6,
+    "total": 92.1
+  },
+  {
+    "indicator": "Mothers who consumed iron folic acid for 100 days or more when they were pregnant (%)",
+    "urban": 29.8,
+    "rural": 20.2,
+    "total": 22.3
+  },
+  {
+    "indicator": "Mothers who consumed iron folic acid for 180 days or more when they were pregnant (%)",
+    "urban": 14.1,
+    "rural": 8.5,
+    "total": 9.7
+  },
+  {
+    "indicator": "Registered pregnancies for which the mother received a Mother and Child Protection (MCP)",
+    "urban": 95.1,
+    "rural": 95.8,
+    "total": 95.7
+  },
+  {
+    "indicator": "Mothers who received postnatal care from a doctor/nurse/LHV/ANM/midwife/other health",
+    "urban": 79.2,
+    "rural": 70,
+    "total": 72
+  },
+  {
+    "indicator": "Average out-of-pocket expenditure per delivery in a public health facility (Rs.)",
+    "urban": 3252,
+    "rural": 2117,
+    "total": 2300
+  },
+  {
+    "indicator": "Children born at home who were taken to a health facility for a check-up within 24 hours of",
+    "urban": 2.2,
+    "rural": 2.4,
+    "total": 2.4
+  },
+  {
+    "indicator": "Children who received postnatal care from a doctor/nurse/LHV/ANM/midwife/other health",
+    "urban": 77.9,
+    "rural": 68.1,
+    "total": 70.2
+  },
+  {
+    "indicator": "Institutional births (%)",
+    "urban": 85.5,
+    "rural": 82.9,
+    "total": 83.4
+  },
+  {
+    "indicator": "Institutional births in public facility (%)",
+    "urban": 43.1,
+    "rural": 61.5,
+    "total": 57.7
+  },
+  {
+    "indicator": "Home births that were conducted by skilled health personnel (%)",
+    "urban": 5.2,
+    "rural": 4.6,
+    "total": 4.7
+  },
+  {
+    "indicator": "Births attended by skilled health personnel (%)",
+    "urban": 88.4,
+    "rural": 83.8,
+    "total": 84.8
+  },
+  {
+    "indicator": "Births delivered by caesarean section (%)",
+    "urban": 24.2,
+    "rural": 11,
+    "total": 13.7
+  },
+  {
+    "indicator": "Births in a private health facility that were delivered by caesarean section (%)",
+    "urban": 42.6,
+    "rural": 37.8,
+    "total": 39.4
+  },
+  {
+    "indicator": "Births in a public health facility that were delivered by caesarean section (%)",
+    "urban": 14.4,
+    "rural": 4.7,
+    "total": 6.2
+  },
+  {
+    "indicator": "Children age 12-23 months fully vaccinated based on information from either vaccination card",
+    "urban": 67.2,
+    "rural": 70.2,
+    "total": 69.6
+  },
+  {
+    "indicator": "Children age 12-23 months fully vaccinated based on information from vaccination card",
+    "urban": 76.6,
+    "rural": 78.8,
+    "total": 78.4
+  },
+  {
+    "indicator": "Children age 12-23 months who have received BCG (%)",
+    "urban": 92,
+    "rural": 93.6,
+    "total": 93.2
+  },
+  {
+    "indicator": "Children age 12-23 months who have received 3 doses of polio vaccine (%)",
+    "urban": 71.4,
+    "rural": 75.1,
+    "total": 74.3
+  },
+  {
+    "indicator": "Children age 12-23 months who have received 3 doses of penta or DPT vaccine (%)",
+    "urban": 78.4,
+    "rural": 81.5,
+    "total": 80.8
+  },
+  {
+    "indicator": "Children age 12-23 months who have received the first dose of measles-containing",
+    "urban": 81,
+    "rural": 83.9,
+    "total": 83.3
+  },
+  {
+    "indicator": "Children age 24-35 months who have received a second dose of measles-containing",
+    "urban": 28.9,
+    "rural": 30.5,
+    "total": 30.2
+  },
+  {
+    "indicator": "Children age 12-23 months who have received 3 doses of rotavirus vaccine (%)",
+    "urban": 53.5,
+    "rural": 47.9,
+    "total": 49.1
+  },
+  {
+    "indicator": "Children age 12-23 months who have received 3 doses of penta or hepatitis B vaccine (%)",
+    "urban": 76.5,
+    "rural": 78.8,
+    "total": 78.3
+  },
+  {
+    "indicator": "Children age 9-35 months who received a vitamin A dose in the last 6 months (%)",
+    "urban": 73.1,
+    "rural": 74.1,
+    "total": 73.9
+  },
+  {
+    "indicator": "Children age 12-23 months who received most of their vaccinations in a public health",
+    "urban": 89.7,
+    "rural": 95.6,
+    "total": 94.4
+  },
+  {
+    "indicator": "Children age 12-23 months who received most of their vaccinations in a private health",
+    "urban": 6.7,
+    "rural": 1,
+    "total": 2.2
+  },
+  {
+    "indicator": "Prevalence of diarrhoea in the 2 weeks preceding the survey (%)",
+    "urban": 5.2,
+    "rural": 5.7,
+    "total": 5.6
+  },
+  {
+    "indicator": "Children with diarrhoea in the 2 weeks preceding the survey who received oral rehydration",
+    "urban": 47.5,
+    "rural": 51.5,
+    "total": 50.7
+  },
+  {
+    "indicator": "Children with diarrhoea in the 2 weeks preceding the survey who received zinc (%)",
+    "urban": 29.7,
+    "rural": 28.2,
+    "total": 28.5
+  },
+  {
+    "indicator": "Children with diarrhoea in the 2 weeks preceding the survey taken to a health facility or health",
+    "urban": 73.3,
+    "rural": 69.1,
+    "total": 69.9
+  },
+  {
+    "indicator": "Prevalence of symptoms of acute respiratory infection (ARI) in the 2 weeks preceding the",
+    "urban": 2.7,
+    "rural": 3.8,
+    "total": 3.5
+  },
+  {
+    "indicator": "Children with fever or symptoms of ARI in the 2 weeks preceding the survey taken to a health",
+    "urban": 67.2,
+    "rural": 62.1,
+    "total": 63
+  },
+  {
+    "indicator": "Children under age 3 years breastfed within one hour of birth (%)",
+    "urban": 24.9,
+    "rural": 23.7,
+    "total": 23.9
+  },
+  {
+    "indicator": "Children under age 6 months exclusively breastfed (%)",
+    "urban": 54.8,
+    "rural": 60.9,
+    "total": 59.7
+  },
+  {
+    "indicator": "Children age 6-8 months receiving solid or semi-solid food and breastmilk (%)",
+    "urban": 35.9,
+    "rural": 29.9,
+    "total": 31
+  },
+  {
+    "indicator": "Breastfeeding children age 6-23 months receiving an adequate diet (%)",
+    "urban": 6.7,
+    "rural": 5.7,
+    "total": 5.9
+  },
+  {
+    "indicator": "Non-breastfeeding children age 6-23 months receiving an adequate diet (%)",
+    "urban": 7.4,
+    "rural": 6.8,
+    "total": 7
+  },
+  {
+    "indicator": "Total children age 6-23 months receiving an adequate diet (%)",
+    "urban": 6.8,
+    "rural": 5.9,
+    "total": 6.1
+  },
+  {
+    "indicator": "Children under 5 years who are stunted (height-for-age) (%)",
+    "urban": 33,
+    "rural": 41.3,
+    "total": 39.7
+  },
+  {
+    "indicator": "Children under 5 years who are wasted (weight-for-height) (%)",
+    "urban": 18.7,
+    "rural": 17,
+    "total": 17.3
+  },
+  {
+    "indicator": "Children under 5 years who are severely wasted (weight-for-height) (%)",
+    "urban": 8.2,
+    "rural": 7.1,
+    "total": 7.3
+  },
+  {
+    "indicator": "Children under 5 years who are underweight (weight-for-age) (%)",
+    "urban": 28.2,
+    "rural": 33.1,
+    "total": 32.1
+  },
+  {
+    "indicator": "Children under 5 years who are overweight (weight-for-height) (%)",
+    "urban": 3.6,
+    "rural": 2.9,
+    "total": 3.1
+  },
+  {
+    "indicator": "Women whose Body Mass Index (BMI) is below normal (BMI <18.5 kg/m2) (%)",
+    "urban": 13.6,
+    "rural": 20.8,
+    "total": 19
+  },
+  {
+    "indicator": "Men whose Body Mass Index (BMI) is below normal (BMI <18.5 kg/m2) (%)",
+    "urban": 13.4,
+    "rural": 19.5,
+    "total": 17.9
+  },
+  {
+    "indicator": "Women who are overweight or obese (BMI ?25.0 kg/m2) (%)",
+    "urban": 30.6,
+    "rural": 18.3,
+    "total": 21.3
+  },
+  {
+    "indicator": "Men who are overweight or obese (BMI ≥25.0 kg/m ) (%)",
+    "urban": 61.7,
+    "rural": 55.2,
+    "total": 56.8
+  },
+  {
+    "indicator": "Women who have high risk waist-to-hip ratio (≥0.85) (%)",
+    "urban": 56.2,
+    "rural": 50.6,
+    "total": 52.1
+  },
+  {
+    "indicator": "Men who have high risk waist-to-hip ratio (?0.90) (%)",
+    "urban": 56.2,
+    "rural": 50.6,
+    "total": 52.1
+  },
+  {
+    "indicator": "Children age 6-59 months who are anaemic (<11.0 g/dl) (%)",
+    "urban": 65.3,
+    "rural": 66.7,
+    "total": 66.4
+  },
+  {
+    "indicator": "Non-pregnant women age 15-49 years who are anaemic (<12.0 g/dl) (%)",
+    "urban": 50.5,
+    "rural": 50.7,
+    "total": 50.6
+  }
+]
