@@ -28,7 +28,6 @@ import {
 } from "@/components/budget-speech-downloads";
 import type { BudgetSpeechPdfData } from "@/lib/budget-speech-pdf";
 import { PageShell } from "@/components/page-shell";
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -62,7 +61,7 @@ const overallBudgetSize = [
   {
     title: "Capital expenditure",
     value: "19.5%",
-    note: "Share of total budget",
+    note: "Share in total budget",
     gradient: "from-indigo-500/20 to-violet-500/20",
   },
   {
@@ -72,7 +71,7 @@ const overallBudgetSize = [
     gradient: "from-emerald-500/20 to-teal-500/20",
   },
   {
-    title: "Revenue surplus",
+    title: "Revenue Balance",
     value: "₹64,457.57 crore",
     note: "Positive surplus position",
     gradient: "from-teal-500/20 to-emerald-500/20",
@@ -80,7 +79,7 @@ const overallBudgetSize = [
   {
     title: "Fiscal deficit",
     value: "₹1,18,480.59 crore",
-    note: "2.98% of estimated GSDP, within the 3% limit set by the 16th Finance Commission",
+    note: "2.98% of GSDP, within the 3% limit recommended by the 16th Finance Commission",
     gradient: "from-amber-500/20 to-orange-500/20",
   },
   {
@@ -461,24 +460,17 @@ export default function BudgetSpeechPage() {
     <PageShell
       className="budget-speech-print-root"
       eyebrow="Uttar Pradesh Budget Speech 2026-27"
-      title="Budget highlights with NFHS-6 policy context"
-      description="Summary - budget size, economic highlights, sector wise allocation and changes, revenue targets and NFHS linked planning context"
+      title="Budget highlights against NFHS-6 context"
+      description="Summary - budget size, economic highlights, sector wise allocation and changes, revenue targets and NFHS linked planning"
       actions={<BudgetSpeechDownloads data={budgetSpeechPdfData} />}
       fullWidthHeader
-      headerExtra={
-        <div className="flex flex-wrap gap-2">
-          <Badge variant="secondary">Budget 2026-27</Badge>
-          <Badge variant="secondary">UP macro-fiscal snapshot</Badge>
-          <Badge variant="secondary">Planning reference</Badge>
-        </div>
-      }
     >
       <div className="budget-speech-page space-y-10">
         <section aria-labelledby="overall-budget-size" className="space-y-4">
           <div>
-            <p className="eyebrow">Overall budget size</p>
+            <p className="eyebrow">Overall budget size year 2026-27</p>
             <h2 id="overall-budget-size" className="sr-only">
-              Overall budget size
+              Overall budget size year 2026-27
             </h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">

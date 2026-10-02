@@ -151,18 +151,14 @@ export function createBudgetSpeechDocument(
       style: "eyebrow",
     },
     {
-      text: "Budget highlights with NFHS-6 policy context",
+      text: "Budget highlights against NFHS-6 context",
       style: "title",
     },
     {
-      text: "Summary - budget size, economic highlights, sector wise allocation and changes, revenue targets and NFHS linked planning context",
+      text: "Summary - budget size, economic highlights, sector wise allocation and changes, revenue targets and NFHS linked planning",
       style: "description",
     },
-    {
-      text: "Budget 2026-27  |  UP macro-fiscal snapshot  |  Planning reference",
-      style: "metadata",
-    },
-    createSectionTitle("Overall budget size"),
+    createSectionTitle("Overall budget size year 2026-27"),
     createCardGrid(data.overallBudgetSize, 3, (item) => ({
       stack: [
         { text: item.title, color: "#475569", fontSize: 8 },
