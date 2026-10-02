@@ -181,7 +181,7 @@ export function createBudgetSpeechDocument(
       margin: [8, 0, 0, 12],
     },
     createSectionTitle(
-      "Sector-wise allocations: year-on-year allocation change",
+      "Sector-wise allocations (Social and Economic Sectors): year-on-year allocation change in allocations",
     ),
     {
       table: {
@@ -196,7 +196,7 @@ export function createBudgetSpeechDocument(
               fillColor: "#4338ca",
             },
             {
-              text: "Allocation change vs 2025-26",
+              text: "Allocation change (2025-26 to 2026-27)",
               bold: true,
               color: "#ffffff",
               fillColor: "#4338ca",
@@ -213,7 +213,7 @@ export function createBudgetSpeechDocument(
       fontSize: 8,
       margin: [0, 0, 0, 12],
     },
-    createSectionTitle("Revenue targets: key own-tax targets"),
+    createSectionTitle("Revenue targets: key own-tax targets receipts"),
     createCardGrid(data.revenueTargets, 4, (item) => ({
       stack: [
         { text: item.source, color: "#475569", fontSize: 8 },
@@ -227,7 +227,7 @@ export function createBudgetSpeechDocument(
       ],
       fillColor: "#ecfdf5",
     })),
-    createSectionTitle("Budget speech categories"),
+    createSectionTitle("Budget speech decoupling"),
     {
       text: "Priorities for Kisan, Mahila, Yuva and other major sectors",
       bold: true,

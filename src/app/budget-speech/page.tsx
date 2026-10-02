@@ -92,7 +92,6 @@ const overallBudgetSize = [
 
 const economicHighlights = [
   "UP's GSDP (2024-25 quick estimate): ₹30.25 lakh crore, up 13.4% year-on-year",
-  "Per capita income: ₹1,09,844 (estimated ₹1,20,000 for 2025-26), more than double the 2016-17 figure",
   "Unemployment rate down to 2.24%",
   "UP climbed from 29th to 18th in the SDG India Index (2018-19 to 2023-24)",
   "~₹50 lakh crore in MoUs signed via Global Investors Summit (Feb 2024), with ~₹15 lakh crore worth of projects already ground-broken",
@@ -134,10 +133,10 @@ const sectorAllocations = [
 ];
 
 const revenueTargets = [
-  { source: "State GST + VAT", target: "₹1,49,956 crore" },
+  { source: "State GST", target: "₹1,49,956 crore" },
   { source: "Excise duty", target: "₹71,278 crore" },
-  { source: "Stamps & Registration", target: "₹43,802 crore" },
-  { source: "Vehicle tax", target: "₹15,808 crore" },
+  { source: "Stamp Duty & Registration Fees", target: "₹43,802 crore" },
+  { source: "Motor Vehicle tax", target: "₹15,808 crore" },
 ];
 
 const categorisationCards = [
@@ -509,9 +508,9 @@ export default function BudgetSpeechPage() {
 
         <section aria-labelledby="sector-allocations" className="space-y-4">
           <div>
-            <p className="eyebrow">Sector-wise allocations</p>
+            <p className="eyebrow">Sector-wise allocations (Social and Economic Sectors)</p>
             <h2 id="sector-allocations" className="section-heading mt-2">
-              Year-on-year allocation change
+              Year-on-year allocation change in allocations
             </h2>
           </div>
           <div className="overflow-hidden rounded-xl border bg-card">
@@ -520,7 +519,7 @@ export default function BudgetSpeechPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead className="min-w-80">Sector</TableHead>
-                    <TableHead className="text-right">Allocation change vs 2025-26</TableHead>
+                    <TableHead className="text-right">Allocation change (2025-26 to 2026-27)</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -541,7 +540,7 @@ export default function BudgetSpeechPage() {
             <p className="eyebrow">Revenue targets</p>
             <h2 id="revenue-targets" className="section-heading mt-2 flex items-center gap-2">
               <Target className="size-5 text-primary" aria-hidden="true" />
-              Key own-tax targets
+              Key own-tax targets receipts
             </h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -558,7 +557,7 @@ export default function BudgetSpeechPage() {
 
         <section aria-labelledby="speech-priority-categories" className="space-y-4">
           <div>
-            <p className="eyebrow">Budget speech categories</p>
+            <p className="eyebrow">Budget speech decoupling</p>
             <h2 id="speech-priority-categories" className="section-heading mt-2">
               Priorities for Kisan, Mahila, Yuva and other major sectors
             </h2>
