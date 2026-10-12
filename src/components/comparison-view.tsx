@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronDown, Download, Eye } from "lucide-react";
 
@@ -19,7 +19,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ValueDisplay, ValuePill } from "@/components/value-display";
+import { ValueDisplay } from "@/components/value-display";
+import { buildComparisonXls } from "@/lib/nfhs/comparison-xls";
 import type { IndicatorUnit, ObservationStatus } from "@/lib/nfhs/types";
 import { cn } from "@/lib/utils";
 
@@ -56,42 +57,50 @@ export function ComparisonView({
   const [selected, setSelected] = useState(
     districts.slice(0, Math.min(4, districts.length)).map((item) => item.id),
   );
-  const [indicatorId, setIndicatorId] = useState(indicators[0]?.id ?? "");
-  const [sortOrder, setSortOrder] = useState<"desc" | "asc">("desc");
-  const indicator =
-    indicators.find((item) => item.id === indicatorId) ?? indicators[0];
-
-  const selectedDistricts = districts.filter((item) =>
-    selected.includes(item.id),
+  const [selectedIndicatorIds, setSelectedIndicatorIds] = useState(
+    indicators[0] ? [indicators[0].id] : [],
   );
-  const comparisonRows = useMemo(() => {
-    const rows = selectedDistricts.map((district) => ({
-      district,
-      value: values.find(
-        (item) =>
-          item.districtId === district.id &&
-          item.indicatorId === indicator?.id,
+  const [sortOrder, setSortOrder] = useState<"desc" | "asc">("desc");
+
+  const valueByKey = useMemo(
+    () =>
+      new Map(
+        values.map((item) => [
+          `${item.districtId}|${item.indicatorId}`,
+          item,
+        ]),
       ),
-    }));
+    [values],
+  );
 
-    return rows.toSorted((a, b) => {
-      const aValue = a.value?.nfhs6;
-      const bValue = b.value?.nfhs6;
+  const selectedIndicators = indicators.filter((item) =>
+    selectedIndicatorIds.includes(item.id),
+  );
 
-      if (aValue === null || aValue === undefined) {
-        return 1;
-      }
-      if (bValue === null || bValue === undefined) {
-        return -1;
-      }
+  const comparisonDistricts = useMemo(() => {
+    const primaryId = indicators.find((item) =>
+      selectedIndicatorIds.includes(item.id),
+    )?.id;
+    const sortValue = (districtId: string) =>
+      primaryId
+        ? (valueByKey.get(`${districtId}|${primaryId}`)?.nfhs6 ?? null)
+        : null;
 
-      if (aValue === bValue) {
-        return a.district.name.localeCompare(b.district.name, "en-IN");
-      }
+    return districts
+      .filter((item) => selected.includes(item.id))
+      .toSorted((a, b) => {
+        const aValue = sortValue(a.id);
+        const bValue = sortValue(b.id);
 
-      return sortOrder === "desc" ? bValue - aValue : aValue - bValue;
-    });
-  }, [indicator?.id, selectedDistricts, sortOrder, values]);
+        if (aValue === bValue) {
+          return a.name.localeCompare(b.name, "en-IN");
+        }
+        if (aValue === null) return 1;
+        if (bValue === null) return -1;
+
+        return sortOrder === "desc" ? bValue - aValue : aValue - bValue;
+      });
+  }, [districts, indicators, selectedIndicatorIds, selected, sortOrder, valueByKey]);
 
   function toggleDistrict(id: string) {
     setSelected((current) => {
@@ -110,36 +119,61 @@ export function ComparisonView({
     setSelected([]);
   }
 
-  function downloadCsv() {
-    if (!indicator) return;
-    const header = ["District", "Indicator", "NFHS-6", "NFHS-5"];
-    const rows = comparisonRows.map(({ district, value }) => [
-      district.name,
-      indicator.label,
-      value?.nfhs6 === null || value?.nfhs6 === undefined
-        ? ""
-        : String(value.nfhs6),
-      value?.nfhs5 === null || value?.nfhs5 === undefined
-        ? ""
-        : String(value.nfhs5),
-    ]);
-    const csv = [header, ...rows]
-      .map((row) =>
-        row
-          .map((cell) => `"${cell.replace(/"/g, '""')}"`)
-          .join(","),
-      )
-      .join("\n");
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  function toggleIndicator(id: string) {
+    setSelectedIndicatorIds((current) => {
+      if (current.includes(id)) {
+        return current.filter((item) => item !== id);
+      }
+      return [...current, id];
+    });
+  }
+
+  function selectAllIndicators() {
+    setSelectedIndicatorIds(indicators.map((indicator) => indicator.id));
+  }
+
+  function clearIndicators() {
+    setSelectedIndicatorIds([]);
+  }
+
+  function valueFor(districtId: string, indicatorId: string) {
+    return valueByKey.get(`${districtId}|${indicatorId}`);
+  }
+
+  function downloadXls() {
+    if (!selectedIndicators.length || !comparisonDistricts.length) return;
+
+    const xml = buildComparisonXls(
+      selectedIndicators.map((indicator) => indicator.label),
+      comparisonDistricts.map((district) => ({
+        name: district.name,
+        observations: selectedIndicators.map((indicator) => {
+          const value = valueFor(district.id, indicator.id);
+          return {
+            nfhs6: {
+              value: value?.nfhs6 ?? null,
+              status: value?.nfhs6Status ?? "missing",
+              unit: indicator.unit,
+            },
+            nfhs5: {
+              value: value?.nfhs5 ?? null,
+              status: value?.nfhs5Status ?? "missing",
+              unit: indicator.unit,
+            },
+          };
+        }),
+      })),
+    );
+    const blob = new Blob([xml], { type: "application/vnd.ms-excel" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `district-comparison-${indicator.id}.csv`;
+    link.download = "district-comparison.xls";
     link.click();
     URL.revokeObjectURL(url);
   }
 
-  if (!indicator) {
+  if (!indicators.length) {
     return <p>No comparison indicators are available.</p>;
   }
 
@@ -162,6 +196,27 @@ export function ComparisonView({
       </label>
     );
   });
+
+  const indicatorOptions = indicators.map((indicator) => {
+    const active = selectedIndicatorIds.includes(indicator.id);
+    return (
+      <label
+        key={indicator.id}
+        className="flex items-start gap-2 rounded-lg px-3 py-2 text-sm hover:bg-muted"
+      >
+        <input
+          type="checkbox"
+          checked={active}
+          onChange={() => toggleIndicator(indicator.id)}
+          className="mt-0.5 size-4 shrink-0 rounded border-border accent-primary"
+        />
+        <span>{indicator.label.trim()}</span>
+      </label>
+    );
+  });
+
+  const columnCount = 2 + selectedIndicators.length * 2;
+  const hasResults = comparisonDistricts.length > 0 && selectedIndicators.length > 0;
 
   return (
     <div className="grid gap-6 xl:grid-cols-[320px_1fr]">
@@ -209,115 +264,157 @@ export function ComparisonView({
       </Card>
 
       <div className="min-w-0 space-y-5">
-        <div className="grid gap-2">
-          <div className="flex flex-col gap-3">
-            <label
-              htmlFor="comparison-indicator"
-              className="grid flex-1 gap-1 text-sm font-medium"
-            >
-              Select Indicator
-              <select
-                id="comparison-indicator"
-                value={indicator.id}
-                onChange={(event) => setIndicatorId(event.target.value)}
-                className="h-10 w-full rounded-lg border bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
-              >
-                {indicators.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="flex flex-wrap items-center gap-2">
-                <Button
-                  type="button"
-                  size="sm"
-                  variant={sortOrder === "desc" ? "default" : "outline"}
-                  onClick={() => setSortOrder("desc")}
-                >
-                  High to Low
-                </Button>
-                <Button
-                  type="button"
-                  size="sm"
-                  variant={sortOrder === "asc" ? "default" : "outline"}
-                  onClick={() => setSortOrder("asc")}
-                >
-                  Low to High
-                </Button>
-              </div>
-              <Button type="button" onClick={downloadCsv}>
-                <Download className="size-4" aria-hidden="true" />
-                Download CSV
+        <details className="rounded-xl border bg-card">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4">
+            <span className="font-semibold">Select Indicators</span>
+            <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+              {selectedIndicators.length} of {indicators.length} selected
+              <ChevronDown className="size-4" aria-hidden="true" />
+            </span>
+          </summary>
+          <div className="border-t">
+            <div className="flex gap-2 p-4 pb-2">
+              <Button type="button" size="sm" variant="outline" onClick={selectAllIndicators}>
+                Select all
+              </Button>
+              <Button type="button" size="sm" variant="outline" onClick={clearIndicators}>
+                Clear
               </Button>
             </div>
+            <div className="grid max-h-80 gap-1 overflow-y-auto p-4 pt-2 sm:grid-cols-2">
+              {indicatorOptions}
+            </div>
           </div>
+        </details>
+
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <Button
+              type="button"
+              size="sm"
+              variant={sortOrder === "desc" ? "default" : "outline"}
+              onClick={() => setSortOrder("desc")}
+            >
+              High to Low
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant={sortOrder === "asc" ? "default" : "outline"}
+              onClick={() => setSortOrder("asc")}
+            >
+              Low to High
+            </Button>
+            {selectedIndicators[0] ? (
+              <span className="text-xs text-muted-foreground">
+                Sorted by NFHS-6 {selectedIndicators[0].label.trim()}
+              </span>
+            ) : null}
+          </div>
+          <Button
+            type="button"
+            onClick={downloadXls}
+            disabled={!hasResults}
+          >
+            <Download className="size-4" aria-hidden="true" />
+            Download XLS
+          </Button>
         </div>
 
         <div className="overflow-hidden rounded-xl border bg-card">
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>District</TableHead>
-                  <TableHead className="text-right">NFHS-6</TableHead>
-                  <TableHead className="text-right">NFHS-5</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {comparisonRows.length ? (
-                  comparisonRows.map(({ district, value }) => (
-                    <TableRow key={district.id}>
-                      <TableCell>
-                        <Link
-                          href={`/districts/${district.slug}`}
-                          className="font-medium text-primary underline-offset-4 hover:underline"
-                        >
-                          {district.name}
-                        </Link>
-                      </TableCell>
-                      <TableCell className="text-right">
-                        <ValueDisplay
-                          value={value?.nfhs6 ?? null}
-                          status={value?.nfhs6Status ?? "missing"}
-                          unit={indicator.unit}
-                        />
-                      </TableCell>
-                      <TableCell className="text-right">
-                        <ValuePill
-                          label="NFHS-5"
-                          value={value?.nfhs5 ?? null}
-                          status={value?.nfhs5Status ?? "missing"}
-                          unit={indicator.unit}
-                        />
-                      </TableCell>
-                      <TableCell className="text-right">
-                        <Link
-                          href={`/districts/${district.slug}`}
-                          className={cn(
-                            buttonVariants({ size: "sm" }),
-                            "inline-flex",
-                          )}
-                        >
-                          <Eye className="size-4" aria-hidden="true" />
-                          View factsheet
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell colSpan={4} className="h-28 text-center">
-                      Select at least one district to compare.
+          <Table className="w-auto min-w-full">
+            <TableHeader>
+              <TableRow>
+                <TableHead
+                  rowSpan={2}
+                  className="sticky left-0 z-20 min-w-44 bg-primary"
+                >
+                  District
+                </TableHead>
+                {selectedIndicators.map((indicator) => (
+                  <TableHead
+                    key={indicator.id}
+                    colSpan={2}
+                    className="w-64 border-l whitespace-normal"
+                  >
+                    {indicator.label.trim()}
+                  </TableHead>
+                ))}
+                <TableHead rowSpan={2} className="text-right">
+                  Actions
+                </TableHead>
+              </TableRow>
+              <TableRow>
+                {selectedIndicators.map((indicator) => (
+                  <Fragment key={indicator.id}>
+                    <TableHead className="w-24 border-l text-right">
+                      NFHS-6
+                    </TableHead>
+                    <TableHead className="w-24 text-right">NFHS-5</TableHead>
+                  </Fragment>
+                ))}
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {hasResults ? (
+                comparisonDistricts.map((district) => (
+                  <TableRow key={district.id}>
+                    <TableCell className="sticky left-0 z-10 min-w-44 bg-card">
+                      <Link
+                        href={`/districts/${district.slug}`}
+                        className="font-medium text-primary underline-offset-4 hover:underline"
+                      >
+                        {district.name}
+                      </Link>
+                    </TableCell>
+                    {selectedIndicators.map((indicator) => {
+                      const value = valueFor(district.id, indicator.id);
+                      return (
+                        <Fragment key={indicator.id}>
+                          <TableCell className="border-l text-right">
+                            <ValueDisplay
+                              value={value?.nfhs6 ?? null}
+                              status={value?.nfhs6Status ?? "missing"}
+                              unit={indicator.unit}
+                              showStatus={false}
+                            />
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <ValueDisplay
+                              value={value?.nfhs5 ?? null}
+                              status={value?.nfhs5Status ?? "missing"}
+                              unit={indicator.unit}
+                              showStatus={false}
+                            />
+                          </TableCell>
+                        </Fragment>
+                      );
+                    })}
+                    <TableCell className="text-right">
+                      <Link
+                        href={`/districts/${district.slug}`}
+                        className={cn(
+                          buttonVariants({ size: "sm" }),
+                          "inline-flex",
+                        )}
+                      >
+                        <Eye className="size-4" aria-hidden="true" />
+                        View factsheet
+                      </Link>
                     </TableCell>
                   </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </div>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={columnCount} className="h-28 text-center">
+                    {selectedIndicators.length
+                      ? "Select at least one district to compare."
+                      : "Select at least one indicator to compare."}
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
         </div>
       </div>
     </div>

@@ -35,59 +35,61 @@ export function HomeStateNfhsTable({ rows }: { rows: StateNfhsRow[] }) {
 
   return (
     <section aria-labelledby="state-nfhs-table" className="space-y-4">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <p className="eyebrow">State-level Progress</p>
           <h2 id="state-nfhs-table" className="section-heading mt-2">
             Uttar Pradesh NFHS-6 vs NFHS-5
           </h2>
-          <div className="mt-3 flex flex-wrap items-center gap-2">
-            <Button
-              type="button"
-              size="sm"
-              variant={residence === "overall" ? "default" : "outline"}
-              onClick={() => setResidence("overall")}
-            >
-              Overall
-            </Button>
-            <Button
-              type="button"
-              size="sm"
-              variant={residence === "urban" ? "default" : "outline"}
-              onClick={() => setResidence("urban")}
-            >
-              Urban
-            </Button>
-            <Button
-              type="button"
-              size="sm"
-              variant={residence === "rural" ? "default" : "outline"}
-              onClick={() => setResidence("rural")}
-            >
-              Rural
-            </Button>
-          </div>
         </div>
-        <a
-          href="/api/up-state-nfhs-5-6-excel"
-          className={cn(buttonVariants())}
-          download
-        >
-          <Download className="size-4" aria-hidden="true" />
-          Download Excel
-        </a>
+        <div className="flex flex-wrap items-center gap-2">
+          <Button
+            type="button"
+            size="sm"
+            variant={residence === "overall" ? "default" : "outline"}
+            onClick={() => setResidence("overall")}
+          >
+            Overall
+          </Button>
+          <Button
+            type="button"
+            size="sm"
+            variant={residence === "urban" ? "default" : "outline"}
+            onClick={() => setResidence("urban")}
+          >
+            Urban
+          </Button>
+          <Button
+            type="button"
+            size="sm"
+            variant={residence === "rural" ? "default" : "outline"}
+            onClick={() => setResidence("rural")}
+          >
+            Rural
+          </Button>
+          <a
+            href="/api/up-state-nfhs-5-6-excel"
+            className={cn(buttonVariants())}
+            download
+          >
+            <Download className="size-4" aria-hidden="true" />
+            Download Excel
+          </a>
+        </div>
       </div>
 
       <div className="overflow-hidden rounded-xl border bg-card">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-20">No.</TableHead>
-              <TableHead className="min-w-96">Indicator</TableHead>
-              <TableHead className="text-right">
+              <TableHead className="w-12 px-3 sm:w-20">No.</TableHead>
+              <TableHead className="whitespace-normal px-3 sm:min-w-96">
+                Indicator
+              </TableHead>
+              <TableHead className="px-3 text-right whitespace-normal">
                 NFHS-6 ({residenceLabel})
               </TableHead>
-              <TableHead className="text-right">
+              <TableHead className="px-3 text-right whitespace-normal">
                 NFHS-5 ({residenceLabel})
               </TableHead>
             </TableRow>
@@ -95,8 +97,8 @@ export function HomeStateNfhsTable({ rows }: { rows: StateNfhsRow[] }) {
           <TableBody>
             {rows.map((row) => (
               <TableRow key={row.id}>
-                <TableCell className="font-semibold tabular-nums">{row.id}</TableCell>
-                <TableCell>{row.label}</TableCell>
+                <TableCell className="px-3 font-semibold tabular-nums">{row.id}</TableCell>
+                <TableCell className="px-3 whitespace-normal">{row.label}</TableCell>
                 <TableCell className="text-right">
                   <ValueDisplay
                     value={row.nfhs6[residence] ?? row.nfhs6.overall}
