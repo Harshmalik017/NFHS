@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { ChevronDown, Download, Eye } from "lucide-react";
 
@@ -20,7 +20,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ValueDisplay } from "@/components/value-display";
-import { buildComparisonXls } from "@/lib/nfhs/comparison-xls";
 import type { IndicatorUnit, ObservationStatus } from "@/lib/nfhs/types";
 import { cn } from "@/lib/utils";
 
@@ -61,6 +60,30 @@ export function ComparisonView({
     indicators[0] ? [indicators[0].id] : [],
   );
   const [sortOrder, setSortOrder] = useState<"desc" | "asc">("desc");
+  const [indicatorsOpen, setIndicatorsOpen] = useState(false);
+  const indicatorsIdleTimer = useRef<number | undefined>(undefined);
+
+  useEffect(
+    () => () => window.clearTimeout(indicatorsIdleTimer.current),
+    [],
+  );
+
+  function keepIndicatorsOpen() {
+    window.clearTimeout(indicatorsIdleTimer.current);
+    indicatorsIdleTimer.current = window.setTimeout(
+      () => setIndicatorsOpen(false),
+      3000,
+    );
+  }
+
+  function handleIndicatorsToggle(open: boolean) {
+    setIndicatorsOpen(open);
+    if (open) {
+      keepIndicatorsOpen();
+    } else {
+      window.clearTimeout(indicatorsIdleTimer.current);
+    }
+  }
 
   const valueByKey = useMemo(
     () =>
@@ -140,10 +163,11 @@ export function ComparisonView({
     return valueByKey.get(`${districtId}|${indicatorId}`);
   }
 
-  function downloadXls() {
+  async function downloadXlsx() {
     if (!selectedIndicators.length || !comparisonDistricts.length) return;
 
-    const xml = buildComparisonXls(
+    const { buildComparisonXlsx } = await import("@/lib/nfhs/comparison-xlsx");
+    const buffer = await buildComparisonXlsx(
       selectedIndicators.map((indicator) => indicator.label),
       comparisonDistricts.map((district) => ({
         name: district.name,
@@ -164,11 +188,13 @@ export function ComparisonView({
         }),
       })),
     );
-    const blob = new Blob([xml], { type: "application/vnd.ms-excel" });
+    const blob = new Blob([buffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "district-comparison.xls";
+    link.download = "district-comparison.xlsx";
     link.click();
     URL.revokeObjectURL(url);
   }
@@ -264,7 +290,15 @@ export function ComparisonView({
       </Card>
 
       <div className="min-w-0 space-y-5">
-        <details className="rounded-xl border bg-card">
+        <details
+          className="rounded-xl border bg-card"
+          open={indicatorsOpen}
+          onToggle={(event) => handleIndicatorsToggle(event.currentTarget.open)}
+          onPointerMove={keepIndicatorsOpen}
+          onPointerDown={keepIndicatorsOpen}
+          onKeyDown={keepIndicatorsOpen}
+          onFocus={keepIndicatorsOpen}
+        >
           <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4">
             <span className="font-semibold">Select Indicators</span>
             <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
@@ -313,7 +347,7 @@ export function ComparisonView({
           </div>
           <Button
             type="button"
-            onClick={downloadXls}
+            onClick={downloadXlsx}
             disabled={!hasResults}
           >
             <Download className="size-4" aria-hidden="true" />
